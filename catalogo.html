@@ -3,17 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catálogo de Drinks - DrinksPremium</title>
+    <meta name="description" content="Descubra o catálogo completo de drinks e coquetéis do SantoGole. Explore receitas, ingredientes e técnicas de preparo.">
+    <meta name="keywords" content="drinks, coquetéis, receitas, bartender, mixologia, catálogo de drinks">
+    <meta name="author" content="SantoGole">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Catálogo de Drinks - SantoGole">
+    <meta property="og:description" content="Explore nosso catálogo completo de drinks e coquetéis.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://santogole.com/catalogo.html">
+    <title>Catálogo de Drinks - SantoGole</title>
+    <link rel="canonical" href="https://santogole.com/catalogo.html">
     <link rel="stylesheet" href="css/catalogo.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <body>
     <!-- Navbar -->
     <nav class="navbar">
         <div class="nav-container">
-            <div class="logo">Drinks<span>Premium</span></div>
+            <div class="logo">Santo<span>Gole</span></div>
             <ul class="nav-links">
                 <li><a href="index.html">Início</a></li>
                 <li><a href="#catalogo" class="active">Catálogo</a></li>
@@ -28,17 +36,19 @@
     </nav>
 
     <!-- Filtros e Ordenação -->
-    <section class="filter-section">
+    <section class="filter-section" aria-labelledby="filter-heading">
         <div class="container">
             <div class="filter-header">
-                <h1>Catálogo de Drinks</h1>
-                <div class="results-count">Mostrando <span id="total-results">0</span> drinks</div>
+                <h1 id="filter-heading">Catálogo de Drinks</h1>
+                <div class="results-counter" id="results-counter" aria-live="polite">
+                    Mostrando <span id="total-results">0</span> drinks
+                </div>
             </div>
             
-            <div class="filter-controls">
+            <div class="filter-controls" role="form" aria-label="Filtros do catálogo">
                 <div class="filter-group">
                     <label for="category-filter">Categoria:</label>
-                    <select id="category-filter">
+                    <select id="category-filter" aria-label="Filtrar por categoria">
                         <option value="all">Todas as categorias</option>
                         <option value="Ordinary_Drink">Bebida Ordinária</option>
                         <option value="Cocktail">Coquetel</option>
@@ -53,7 +63,7 @@
                 
                 <div class="filter-group">
                     <label for="sort-by">Ordenar por:</label>
-                    <select id="sort-by">
+                    <select id="sort-by" aria-label="Ordenar resultados">
                         <option value="name-asc">Nome (A-Z)</option>
                         <option value="name-desc">Nome (Z-A)</option>
                         <option value="category">Categoria</option>
@@ -62,82 +72,47 @@
                 
                 <div class="filter-group">
                     <label for="search-input">Buscar:</label>
-                    <input type="text" id="search-input" placeholder="Digite o nome do drink...">
+                    <input type="text" id="search-input" placeholder="Digite o nome do drink..." aria-label="Buscar drinks por nome">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Catálogo de Drinks -->
-    <section id="catalogo" class="catalog-section">
+    <main id="catalogo" class="catalog-section" aria-label="Catálogo de drinks">
         <div class="container">
-            <div class="catalog-grid" id="drinks-container">
+            <div class="catalog-grid" id="drinks-container" role="list" aria-live="polite">
                 <!-- Os cards de drinks serão inseridos aqui via JavaScript -->
             </div>
             
-            <div class="loading-spinner" id="loading-spinner">
-                <i class="fas fa-cog fa-spin"></i>
+            <div class="loading-spinner" id="loading-spinner" aria-busy="true" aria-label="Carregando drinks">
+                <div class="spinner" aria-hidden="true"></div>
                 <p>Carregando drinks...</p>
             </div>
             
-            <div class="pagination" id="pagination">
-                <button class="pagination-btn" id="prev-page">Anterior</button>
-                <span class="page-info" id="page-info">Página 1 de 1</span>
-                <button class="pagination-btn" id="next-page">Próxima</button>
-            </div>
+            <nav class="pagination" id="pagination" aria-label="Navegação de páginas">
+                <button class="pagination-btn" id="prev-page" aria-label="Página anterior" disabled>Anterior</button>
+                <span class="page-info" id="page-info" aria-current="page">Página 1 de 1</span>
+                <button class="pagination-btn" id="next-page" aria-label="Próxima página" disabled>Próxima</button>
+            </nav>
         </div>
-    </section>
+    </main>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-logo">
-                <h3>DrinksPremium</h3>
-                <p>Elevando a arte da coquetelaria</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-pinterest"></i></a>
-                    <a href="#"><i class="fab fa-youtube"></i></a>
-                </div>
+    <!-- Footer Premium -->
+    <footer class="catalog-footer" role="contentinfo">
+        <div class="catalog-footer-content">
+            <div class="catalog-footer-brand">SantoGole</div>
+            <div class="catalog-footer-text">
+                Elevando a arte da coquetelaria
             </div>
-            
-            <div class="footer-links">
-                <h4>Explorar</h4>
-                <ul>
-                    <li><a href="#">Receitas</a></li>
-                    <li><a href="#">Técnicas</a></li>
-                    <li><a href="busca.html">Buscar Drinks</a></li>
-                    <li><a href="#">Barware</a></li>
-                </ul>
+            <div class="catalog-footer-text" style="opacity: 0.7; font-size: 0.9rem;">
+                &copy; 2024 SantoGole. Todos os direitos reservados.
             </div>
-            
-            <div class="footer-links">
-                <h4>Recursos</h4>
-                <ul>
-                    <li><a href="#">Clube Premium</a></li>
-                    <li><a href="#">Workshops</a></li>
-                    <li><a href="#">E-books</a></li>
-                    <li><a href="#">Assinaturas</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-links">
-                <h4>Contato</h4>
-                <ul>
-                    <li><a href="#">Sobre nós</a></li>
-                    <li><a href="#">Parcerias</a></li>
-                    <li><a href="#">Publicidade</a></li>
-                    <li><a href="#">Contato</a></li>
-                </ul>
-            </div>
-        </div>
-        
-        <div class="copyright">
-            <p>&copy; 2023 DrinksPremium. Todos os direitos reservados.</p>
         </div>
     </footer>
 
     <script src="js/catalogo.js"></script>
+  
+
 </body>
 </html>

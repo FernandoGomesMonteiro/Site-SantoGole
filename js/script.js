@@ -1,42 +1,4 @@
 // ==========================================
-// LÓGICA PARA ALTERNAR O TEMA (DARK MODE)
-// ==========================================
-const themeToggle = document.getElementById('theme-toggle');
-const body = document.body;
-const moonIcon = '<i class="fas fa-moon"></i>';
-const sunIcon = '<i class="fas fa-sun"></i>';
-
-const applyTheme = () => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme === 'dark') {
-        body.classList.add('dark-theme');
-        themeToggle.innerHTML = sunIcon;
-        themeToggle.setAttribute('aria-label', 'Ativar modo claro');
-    } else {
-        body.classList.remove('dark-theme');
-        themeToggle.innerHTML = moonIcon;
-        themeToggle.setAttribute('aria-label', 'Ativar modo escuro');
-    }
-};
-
-const toggleTheme = () => {
-    body.classList.toggle('dark-theme');
-    if (body.classList.contains('dark-theme')) {
-        localStorage.setItem('theme', 'dark');
-        themeToggle.innerHTML = sunIcon;
-        themeToggle.setAttribute('aria-label', 'Ativar modo claro');
-    } else {
-        localStorage.setItem('theme', 'light');
-        themeToggle.innerHTML = moonIcon;
-        themeToggle.setAttribute('aria-label', 'Ativar modo escuro');
-    }
-};
-
-themeToggle.addEventListener('click', toggleTheme);
-applyTheme();
-
-
-// ==========================================
 // LÓGICA DA BUSCA NO HEADER
 // ==========================================
 const searchToggle = document.getElementById('search-toggle');

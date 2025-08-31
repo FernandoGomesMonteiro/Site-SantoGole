@@ -1,4 +1,4 @@
-        document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function() {
             // Elementos do DOM
             const drinksContainer = document.getElementById('drinks-container');
             const loadingSpinner = document.getElementById('loading-spinner');
