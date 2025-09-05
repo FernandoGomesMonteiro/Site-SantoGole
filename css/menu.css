@@ -31,73 +31,12 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 80px;
+
 }
 
 body {
-    font-family: 'Inter', sans-serif;
-    line-height: 1.6;
-    color: var(--text-light);
     background: linear-gradient(135deg, #0a0f1c 0%, #1a2332 30%, #2d3748 70%, #4a5568 100%);
-    background-attachment: fixed;
-    position: relative;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-}
 
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background:
-        radial-gradient(circle at 15% 15%, rgba(255, 165, 0, 0.15) 0%, transparent 60%),
-        radial-gradient(circle at 85% 85%, rgba(255, 99, 71, 0.15) 0%, transparent 60%),
-        radial-gradient(circle at 50% 50%, rgba(255, 165, 0, 0.08) 0%, transparent 50%);
-    pointer-events: none;
-    z-index: -1;
-    animation: backgroundShift 15s ease-in-out infinite;
-}
-
-@keyframes backgroundShift {
-
-    0%,
-    100% {
-        transform: scale(1) rotate(0deg);
-        opacity: 1;
-    }
-
-    50% {
-        transform: scale(1.1) rotate(2deg);
-        opacity: 0.7;
-    }
-}
-
-body::after {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background:
-        linear-gradient(45deg, transparent 48%, rgba(255, 165, 0, 0.05) 49%, rgba(255, 165, 0, 0.05) 51%, transparent 52%),
-        linear-gradient(-45deg, transparent 48%, rgba(255, 99, 71, 0.05) 49%, rgba(255, 99, 71, 0.05) 51%, transparent 52%);
-    background-size: 60px 60px;
-    pointer-events: none;
-    z-index: -1;
-    animation: patternMove 25s linear infinite;
-}
-
-@keyframes patternMove {
-    0% {
-        background-position: 0 0, 0 0;
-    }
-
-    100% {
-        background-position: 60px 60px, -60px 60px;
-    }
 }
 
 .main-header {

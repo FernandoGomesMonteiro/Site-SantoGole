@@ -25,15 +25,13 @@
 
 <body>
     <header class="main-header" id="main-header">
-        <a href="#" class="logo">Santo<span>Gole</span></a>
+        <a href="index.html" class="logo">Santo<span>Gole</span></a>
 
         <nav class="desktop-nav">
-            <a href="#" class="active">Início</a>
+            <a href="index.html" class="active">Início</a>
             <a href="#sobre">Sobre</a>
             <a href="catalogo.html">Catálogo</a>
-            <a href="busca.html">
-                <i class="fas fa-search"></i> Buscar Drinks
-            </a>
+            <a href="roleta.html">Roleta</a>
             <a href="#contato">Contato</a>
         </nav>
         <div>
@@ -48,53 +46,54 @@
         </div>
     </section>
 
-    <!-- Filtros e Ordenação -->
-    <section class="filter-section" aria-labelledby="filter-heading">
-        <div class="container">
-            <div class="filter-header">
-                <h1 id="filter-heading">Catálogo de Drinks</h1>
-                <div class="results-counter" id="results-counter" aria-live="polite">
-                    Mostrando <span id="total-results">0</span> drinks
-                </div>
-            </div>
-
-            <div class="filter-controls" role="form" aria-label="Filtros do catálogo">
-                <div class="filter-group">
-                    <label for="category-filter">Categoria:</label>
-                    <select id="category-filter" aria-label="Filtrar por categoria">
-                        <option value="all">Todas as categorias</option>
-                        <option value="Ordinary_Drink">Bebida Ordinária</option>
-                        <option value="Cocktail">Coquetel</option>
-                        <option value="Shot">Shot</option>
-                        <option value="Punch_/_Party_Drink">Punch/Drink de Festa</option>
-                        <option value="Homemade_Liqueur">Licor Caseiro</option>
-                        <option value="Beer">Cerveja</option>
-                        <option value="Soft_Drink">Refrigerante</option>
-                        <option value="Other/Unknown">Outro/Desconhecido</option>
-                    </select>
-                </div>
-
-                <div class="filter-group">
-                    <label for="sort-by">Ordenar por:</label>
-                    <select id="sort-by" aria-label="Ordenar resultados">
-                        <option value="name-asc">Nome (A-Z)</option>
-                        <option value="name-desc">Nome (Z-A)</option>
-                        <option value="category">Categoria</option>
-                    </select>
-                </div>
-
-                <div class="filter-group">
-                    <label for="search-input">Buscar:</label>
-                    <input type="text" id="search-input" placeholder="Digite o nome do drink..."
-                        aria-label="Buscar drinks por nome">
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Catálogo de Drinks -->
     <main id="catalogo" class="catalog-section" aria-label="Catálogo de drinks">
+        <!-- Filtros e Ordenação -->
+        <section aria-labelledby="filter-heading">
+            <div class="container">
+                <div class="sophisticated-text">
+                    <h1>Catálogo de Drinks</h1>
+                </div>
+
+                <div class="filter-controls" role="form" aria-label="Filtros do catálogo">
+                    <div class="filter-group">
+                        <label for="category-filter">Categoria:</label>
+                        <select id="category-filter" aria-label="Filtrar por categoria">
+                            <option value="all">Todas as categorias</option>
+                            <option value="Ordinary_Drink">Bebida Ordinária</option>
+                            <option value="Cocktail">Coquetel</option>
+                            <option value="Shot">Shot</option>
+                            <option value="Punch_/_Party_Drink">Punch/Drink de Festa</option>
+                            <option value="Homemade_Liqueur">Licor Caseiro</option>
+                            <option value="Beer">Cerveja</option>
+                            <option value="Soft_Drink">Refrigerante</option>
+                            <option value="Other/Unknown">Outro/Desconhecido</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="sort-by">Ordenar por:</label>
+                        <select id="sort-by" aria-label="Ordenar resultados">
+                            <option value="name-asc">Nome (A-Z)</option>
+                            <option value="name-desc">Nome (Z-A)</option>
+                            <option value="category">Categoria</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="search-input">Buscar:</label>
+                        <input type="text" id="search-input" placeholder="Digite o nome do drink..."
+                            aria-label="Buscar drinks por nome">
+                    </div>
+                    
+                </div>
+            </div>
+        </section>
+
+        <!-- Catálogo de Drinks -->
         <div class="container">
+             <div class="results-counter" id="results-counter" aria-live="polite">
+                        Mostrando <span id="total-results">0</span> drinks
+                    </div>
             <div class="catalog-grid" id="drinks-container" role="list" aria-live="polite">
                 <!-- Os cards de drinks serão inseridos aqui via JavaScript -->
             </div>
