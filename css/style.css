@@ -189,7 +189,7 @@ h4 {
 .desktop-nav a {
     color: white;
     text-decoration: none;
-    font-size: 1rem;
+    font-size: 18px;
     position: relative;
     padding: 0.5rem 0;
     transition: all 0.3s ease;
@@ -220,28 +220,6 @@ h4 {
     display: flex;
     align-items: center;
     gap: 1rem;
-}
-
-#theme-toggle,
-#search-toggle {
-    background: transparent;
-    border: none;
-    color: white;
-    cursor: pointer;
-    font-size: 1.2rem;
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.3s ease;
-}
-
-#theme-toggle:hover,
-#search-toggle:hover {
-    background: rgba(255, 255, 255, 0.2);
-    transform: translateY(-2px) scale(1.1);
 }
 
 .search-container {
@@ -358,7 +336,7 @@ h4 {
     background:
         linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)),
         url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80') center/cover;
-    height: calc(100vh - 80px);
+    height: calc(110vh - 80px);
     display: flex;
     align-items: center;
     color: var(--text-light);
@@ -1281,10 +1259,7 @@ h4 {
 
 @media (max-width: 992px) {
 
-    .desktop-nav,
-    #search-toggle {
-        display: none;
-    }
+    
 
     .hamburger {
         display: flex;
