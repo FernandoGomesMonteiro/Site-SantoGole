@@ -1,25 +1,4 @@
 // ==========================================
-// LÓGICA DA BUSCA NO HEADER
-// ==========================================
-const searchToggle = document.getElementById('search-toggle');
-const searchContainer = document.getElementById('search-container');
-
-searchToggle.addEventListener('click', (e) => {
-    e.stopPropagation();
-    searchContainer.classList.toggle('active');
-    if (searchContainer.classList.contains('active')) {
-        document.getElementById('search-input').focus();
-    }
-});
-
-document.addEventListener('click', (e) => {
-    if (!searchContainer.contains(e.target) && !searchToggle.contains(e.target)) {
-        searchContainer.classList.remove('active');
-    }
-});
-
-
-// ==========================================
 // LÓGICA DO MENU MOBILE
 // ==========================================
 const hamburgerBtn = document.getElementById('hamburger-btn');

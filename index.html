@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -8,35 +9,32 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/menu.css">
 </head>
 
 </head>
 
-<body id="top">
+<body>
     <header class="main-header" id="main-header">
         <a href="#" class="logo">Santo<span>Gole</span></a>
-        
+
         <nav class="desktop-nav">
             <a href="#" class="active">Início</a>
-            <a href="#receitas">Receitas</a>
             <a href="#sobre">Sobre</a>
+            <a href="catalogo.html">Catálogo</a>
+            <a href="busca.html">
+                <i class="fas fa-search"></i> Buscar Drinks
+            </a>
             <a href="#contato">Contato</a>
         </nav>
-        
-        <div class="header-actions">
-            <button id="search-toggle" aria-label="Buscar receitas">
-                <i class="fas fa-search"></i>
-            </button>
-
-        </div>
-        
-        <div class="search-container" id="search-container">
-            <input type="text" placeholder="Buscar receitas..." id="search-input">
+        <div>
         </div>
     </header>
 
-    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-nav">
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menu" aria-expanded="false"
+        aria-controls="mobile-nav">
         <i class="fas fa-bars"></i>
     </button>
 
@@ -50,28 +48,19 @@
 
     <section class="hero">
         <div class="hero-content">
-            <h1>A Arte da Coquetelaria</h1>
+            <h1>A arte da Coquetelaria</h1>
             <p>Descubra receitas exclusivas e técnicas sofisticadas para criar drinks memoráveis.</p>
             <div class="hero-buttons">
                 <a href="#receitas" class="hero-btn">
                     <i class="fas fa-cocktail"></i> Explorar Receitas
                 </a>
-                <a href="catalogo.html" class="hero-btn">
-                    <i class="fas fa-wine-bottle"></i> Ver Catálogo
-                </a>
-                <a href="busca.html" class="hero-btn">
-                    <i class="fas fa-search"></i> Buscar Drinks
-                </a>
             </div>
         </div>
-        <a href="#receitas" class="scroll-down" aria-label="Role para baixo">
-            <i class="fas fa-chevron-down"></i>
-        </a>
     </section>
 
-   
 
-    <section class="filter-section fade-in">
+
+    <div class="filter-section fade-in">
         <h2>Nossas Categorias de Drinks mais famosos</h2>
         <div class="filters-container">
             <button class="filter-btn active" data-filter="todos">
@@ -95,40 +84,41 @@
                 <span>Autorais</span>
             </button>
         </div>
-    </section>
 
-    <section id="receitas" class="carousel-section fade-in">
-  
-        <div class="carousel-container">
-             <h2 style="text-align: center;">Drinks Mais famosos</h2>
-            <button class="carousel-button prev" aria-label="Drink anterior">
-                <i class="fas fa-chevron-left"></i>
-            </button>
-            
-            <div class="carousel-track-container">
-                <div class="carousel-track">
+        <section id="receitas" class="carousel-section fade-in">
+            <div class="carousel-container">
+                <button class="carousel-button prev" aria-label="Drink anterior">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <div class="carousel-track-container">
+                    <div class="carousel-track">
                     </div>
+                </div>
+
+                <button class="carousel-button next" aria-label="Próximo drink">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
             </div>
-            
-            <button class="carousel-button next" aria-label="Próximo drink">
-                <i class="fas fa-chevron-right"></i>
-            </button>
-        </div>
-        
-        <div class="carousel-indicators" id="carousel-indicators">
+
+            <div class="carousel-indicators" id="carousel-indicators">
             </div>
-    </section>
+        </section>
+    </div>
 
     <section id="sobre" class="sophisticated-section fade-in">
         <div class="sophisticated-content">
             <div class="sophisticated-text">
                 <h2>A Arte dos Destilados</h2>
-                <p>Os drinks premium são muito mais que simples combinações de ingredientes. São expressões de cultura, história e sofisticação.</p>
-                <p>A verdadeira maestria na coquetelaria está em entender as nuances de cada ingrediente e como eles se harmonizam para criar uma experiência sensorial única.</p>
+                <p>Os drinks premium são muito mais que simples combinações de ingredientes. São expressões de cultura,
+                    história e sofisticação.</p>
+                <p>A verdadeira maestria na coquetelaria está em entender as nuances de cada ingrediente e como eles se
+                    harmonizam para criar uma experiência sensorial única.</p>
                 <p class="signature">- Rafael Silva, Master Mixologist</p>
             </div>
             <div class="sophisticated-image">
-                <img src="https://images.unsplash.com/photo-1536935338788-846bb9981813?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" alt="Drink sofisticado sendo preparado em um bar elegante">
+                <img src="https://images.unsplash.com/photo-1536935338788-846bb9981813?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="Drink sofisticado sendo preparado em um bar elegante">
             </div>
         </div>
     </section>
@@ -145,7 +135,7 @@
                     <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
                 </div>
             </div>
-            
+
             <div class="footer-links">
                 <h4>Explorar</h4>
                 <ul>
@@ -155,7 +145,7 @@
                     <li><a href="#">Barware</a></li>
                 </ul>
             </div>
-            
+
             <div class="footer-links">
                 <h4>Recursos</h4>
                 <ul>
@@ -165,7 +155,7 @@
                     <li><a href="#">Assinaturas</a></li>
                 </ul>
             </div>
-            
+
             <div class="footer-links">
                 <h4>Contato</h4>
                 <ul>
@@ -176,12 +166,9 @@
                 </ul>
             </div>
         </div>
-        
+
         <div class="copyright-area">
             <p>&copy; 2025 SantoGole. Todos os direitos reservados.</p>
-            <a href="#top" class="back-to-top" aria-label="Voltar ao topo">
-                <i class="fas fa-arrow-up"></i>
-            </a>
         </div>
     </footer>
 
@@ -189,14 +176,15 @@
         <div class="modal-content">
             <button class="close-modal" id="close-modal-btn" aria-label="Fechar receita">&times;</button>
             <div id="modal-body">
-                </div>
+            </div>
         </div>
     </div>
 
     <div class="toast-container" id="toast-container">
-        </div>
+    </div>
 
     <script src="js/script.js"></script>
 
 </body>
+
 </html>
