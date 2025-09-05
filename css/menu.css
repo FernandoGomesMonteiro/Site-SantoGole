@@ -1,0 +1,173 @@
+:root {
+    --primary-color: #FFA500;
+    --secondary-color: #FF8C00;
+    --accent-color: #FF6347;
+    --dark-color: #0f172a;
+    --light-color: #f8fafc;
+    --text-light: #f1f5f9;
+    --text-dark: #0f172a;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --gradient-primary: linear-gradient(135deg, #FFA500 0%, #FF8C00 50%, #FFB347 100%);
+    --gradient-secondary: linear-gradient(135deg, #FF6347 0%, #FF4500 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255, 165, 0, 0.2) 0%, rgba(255, 140, 0, 0.2) 100%);
+    --shadow-light: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 20px 40px rgba(0, 0, 0, 0.15);
+    --shadow-large: 0 25px 50px rgba(0, 0, 0, 0.2);
+    --shadow-glow: 0 0 30px rgba(255, 165, 0, 0.4);
+    --success-color: #22c55e;
+    --warning-color: #f59e0b;
+    --error-color: #ef4444;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    color: var(--text-light);
+    background: linear-gradient(135deg, #0a0f1c 0%, #1a2332 30%, #2d3748 70%, #4a5568 100%);
+    background-attachment: fixed;
+    position: relative;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        radial-gradient(circle at 15% 15%, rgba(255, 165, 0, 0.15) 0%, transparent 60%),
+        radial-gradient(circle at 85% 85%, rgba(255, 99, 71, 0.15) 0%, transparent 60%),
+        radial-gradient(circle at 50% 50%, rgba(255, 165, 0, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: -1;
+    animation: backgroundShift 15s ease-in-out infinite;
+}
+
+@keyframes backgroundShift {
+
+    0%,
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(1.1) rotate(2deg);
+        opacity: 0.7;
+    }
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background:
+        linear-gradient(45deg, transparent 48%, rgba(255, 165, 0, 0.05) 49%, rgba(255, 165, 0, 0.05) 51%, transparent 52%),
+        linear-gradient(-45deg, transparent 48%, rgba(255, 99, 71, 0.05) 49%, rgba(255, 99, 71, 0.05) 51%, transparent 52%);
+    background-size: 60px 60px;
+    pointer-events: none;
+    z-index: -1;
+    animation: patternMove 25s linear infinite;
+}
+
+@keyframes patternMove {
+    0% {
+        background-position: 0 0, 0 0;
+    }
+
+    100% {
+        background-position: 60px 60px, -60px 60px;
+    }
+}
+
+.main-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background: transparent;
+    backdrop-filter: blur(0);
+    z-index: 1000;
+    box-shadow: none;
+    transition: padding 0.3s ease, background-color 0.4s ease, box-shadow 0.4s ease, backdrop-filter 0.4s ease;
+}
+
+.main-header.scrolled {
+    padding: 0.7rem 5%;
+    background-color: rgba(17, 24, 39, 0.8);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: white;
+    text-decoration: none;
+}
+
+.logo span {
+    color: var(--primary-color);
+}
+
+
+.desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.desktop-nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 18px;
+    position: relative;
+    padding: 0.5rem 0;
+    transition: all 0.3s ease;
+}
+
+.desktop-nav a::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--primary-color);
+    transition: width 0.3s ease;
+}
+
+.desktop-nav a:hover::after,
+.desktop-nav a.active::after {
+    width: 100%;
+}
+
+.desktop-nav a:hover,
+.desktop-nav a.active {
+    color: var(--primary-color);
+}

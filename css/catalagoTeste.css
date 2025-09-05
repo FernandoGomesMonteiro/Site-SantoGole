@@ -1,0 +1,238 @@
+/* Container */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* FILTROS */
+.filter-section {
+    background: #fff;
+    border-bottom: 1px solid #eee;
+    padding: 2.5rem 0;
+}
+
+.filter-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+}
+
+.filter-header h1 {
+    font-size: 2rem;
+    color: #111;
+    font-weight: 700;
+}
+
+.results-counter {
+    font-size: 1rem;
+    color: #666;
+}
+
+.filter-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    font-size: 0.9rem;
+    min-width: 200px;
+}
+
+.filter-group label {
+    margin-bottom: 0.4rem;
+    color: #444;
+    font-weight: 500;
+}
+
+.filter-group select,
+.filter-group input {
+    padding: 0.7rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    outline: none;
+    transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+.filter-group select:focus,
+.filter-group input:focus {
+    border-color: #e63946;
+    box-shadow: 0 0 0 2px rgba(230, 57, 70, 0.2);
+}
+
+/* CATÁLOGO */
+.catalog-section {
+    padding: 3rem 0;
+}
+
+.catalog-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 2rem;
+}
+
+/* CARD (quando JS inserir drinks) */
+.catalog-card {
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.catalog-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
+}
+
+.catalog-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.catalog-card-body {
+    padding: 1rem;
+}
+
+.catalog-card-body h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.4rem;
+    color: #111;
+}
+
+.catalog-card-body p {
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* LOADING */
+.loading-spinner {
+    text-align: center;
+    margin-top: 2rem;
+    display: none;
+}
+
+.spinner {
+    border: 4px solid #eee;
+    border-top: 4px solid #e63946;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    animation: spin 0.9s linear infinite;
+    margin: 0 auto 1rem;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.loading-spinner p {
+    color: #666;
+    font-size: 0.95rem;
+}
+
+/* PAGINAÇÃO */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.2rem;
+    margin-top: 3rem;
+}
+
+.pagination-btn {
+    background: #e63946;
+    color: #fff;
+    border: none;
+    padding: 0.7rem 1.4rem;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.3s ease;
+}
+
+.pagination-btn:disabled {
+    background: #bbb;
+    cursor: not-allowed;
+}
+
+.pagination-btn:hover:not(:disabled) {
+    background: #c72c38;
+}
+
+.page-info {
+    font-weight: 500;
+    color: #444;
+}
+
+
+
+.hero {
+    background: 
+        radial-gradient(ellipse at top, rgba(255, 107, 53, 0.3) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom, rgba(255, 23, 68, 0.2) 0%, transparent 50%),
+        linear-gradient(135deg, rgba(10, 10, 10, 0.8) 0%, rgba(26, 26, 26, 0.9) 100%),
+        url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80') center/cover;
+    height: calc(70vh - 80px);
+    display: flex;
+    align-items: center;
+    color: var(--text-light);
+    padding: 2rem;
+    margin-bottom: 4rem;
+    position: relative;
+    overflow: hidden;
+    margin-top: 0;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-primary);
+    opacity: 0.05;
+}
+
+.hero-content {
+    max-width: 900px;
+    text-align: left;
+    margin: 0;
+    padding-left: 8%;
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 50%, var(--secondary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: slideInLeft 0.8s ease-out;
+    font-weight: 900;
+    line-height: 1.1;
+}
+
+.hero p {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    text-align: left;
+    opacity: 0.9;
+    animation: slideInLeft 0.8s ease-out 0.2s both;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
