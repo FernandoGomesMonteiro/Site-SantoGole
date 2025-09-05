@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="css/menu.css">
+    <style>
+        .hero {
+            background:
+                linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)),
+                url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80') center/cover;
+            height: calc(80vh - 80px);
+            display: flex;
+            align-items: center;
+            color: var(--text-light);
+            padding: 2rem;
+            position: relative;
+            overflow: hidden;
+            margin-top: 0;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: var(--gradient-primary);
+            opacity: 0.05;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            text-align: left;
+            margin: 0;
+            padding-left: 8%;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 4.5rem);
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 50%, var(--secondary-color) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInLeft 0.8s ease-out;
+            font-weight: 900;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+            margin-bottom: 2.5rem;
+            max-width: 600px;
+            text-align: left;
+            opacity: 0.9;
+            animation: slideInLeft 0.8s ease-out 0.2s both;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .hero-btn {
+            display: inline-block;
+            padding: 1.2rem 3rem;
+            background: var(--gradient-primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            box-shadow: var(--shadow-medium);
+            transition: all var(--transition-medium);
+            position: relative;
+            overflow: hidden;
+            animation: slideInLeft 0.8s ease-out 0.4s both;
+        }
+
+        .hero-btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            transition: all var(--transition-slow);
+            transform: translate(-50%, -50%);
+        }
+
+        .hero-btn:hover::before {
+            width: 400px;
+            height: 400px;
+        }
+
+        .hero-btn:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .circle-roulette {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 3rem auto;
+            font-family: Arial, sans-serif;
+            background: rgba(255, 255, 255, 0.3);
+            width: 1000px;
+            border-radius: 20px;
+        }
+
+        .roulette-wrapper {
+            width: 90%;
+            max-width: 900px;
+            text-align: center;
+        }
+
+        h2 {
+            color: #ff6f00;
+            margin-bottom: 2rem;
+        }
+
+        .roulette-content {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+
+        /* Lista de drinks */
+        .drink-list-wrapper {
+            flex: 1;
+            min-width: 200px;
+            border-right: #333 2px solid;
+            height: 500px;
+
+        }
+
+        .add-drink {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .add-drink input {
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            border: 2px solid #ffcc80;
+            flex: 1;
+            font-size: 1rem;
+        }
+
+        .add-drink button {
+            padding: 0.5rem 1rem;
+            border-radius: 12px;
+            border: none;
+            background-color: #ff6f00;
+            color: #fff;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .add-drink button:hover {
+            background-color: #e65c00;
+        }
+
+        #drink-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #drink-list li {
+            background-color: #ffcc80;
+            color: #333;
+            padding: 0.5rem 1rem;
+            margin-bottom: 0.5rem;
+            border-radius: 12px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Canvas e roleta */
+        .canvas-wrapper {
+            flex: 1;
+            min-width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #spin-btn {
+            margin-top: 1rem;
+            padding: 0.7rem 1.5rem;
+            font-size: 1.1rem;
+            border-radius: 50px;
+            border: none;
+            background: linear-gradient(135deg, #ff6f00, #ffcc80);
+            color: #fff;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        #spin-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
+        }
+
+        #result {
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-top: 1rem;
+            color: #ff6f00;
+        }
+
+        /* Canvas da roleta */
+        canvas {
+            border-radius: 50%;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            background-color: #fff3e0;
+        }
+
+        /* Overlay centralizado */
+        #overlay-result {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) scale(0);
+            background: rgba(255, 111, 0, 0.95);
+            color: #fff;
+            padding: 2rem 3rem;
+            border-radius: 20px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            text-align: center;
+            z-index: 999;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            opacity: 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        #overlay-result.show {
+            transform: translate(-50%, -50%) scale(1);
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="main-header" id="main-header">
+        <a href="index.html" class="logo">Santo<span>Gole</span></a>
+
+        <nav class="desktop-nav">
+            <a href="index.html" class="active">Início</a>
+            <a href="#sobre">Sobre</a>
+            <a href="catalogo.html">Catálogo</a>
+            <a href="roleta.html">Roleta</a>
+            <a href="#contato">Contato</a>
+        </nav>
+        <div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Roleta de Drinks</h1>
+            <p>Gire a roleta e descubra um drink aleatório ou explore nossa busca para encontrar sua receita perfeita!
+            </p>
+        </div>
+    </section>
+
+
+    <section class="circle-roulette">
+        <div class="roulette-wrapper">
+            <h2>Monte sua Roleta de Drinks</h2>
+
+            <div class="roulette-content">
+                <!-- Lista de drinks -->
+                <div class="drink-list-wrapper">
+                    <div class="add-drink">
+                        <input type="text" id="drink-input" placeholder="Digite o nome do drink">
+                        <button id="add-drink-btn">Adicionar</button>
+                    </div>
+                    <ul id="drink-list"></ul>
+                </div>
+
+                <!-- Canvas da roleta -->
+                <div class="canvas-wrapper">
+                    <canvas id="roulette" width="400" height="400"></canvas>
+                    <button id="spin-btn">🎉 Girar a Roleta!</button>
+                    <p id="result"></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="overlay-result">
+        <p id="overlay-text"></p>
+    </div>
+
+
+    <script>
+        const canvas = document.getElementById('roulette');
+        const ctx = canvas.getContext('2d');
+        const drinkInput = document.getElementById('drink-input');
+        const addDrinkBtn = document.getElementById('add-drink-btn');
+        const drinkList = document.getElementById('drink-list');
+        const spinBtn = document.getElementById('spin-btn');
+        const result = document.getElementById('result');
+
+        let drinks = [];
+        let colors = ["#FFB74D", "#FF8A65", "#FF7043", "#FFA726", "#FF6F00", "#FFCC80", "#FFE0B2"];
+        let startAngle = 0;
+        let arc = 0;
+        let spinTimeout = null;
+        let spinAngleStart = 0;
+        let spinTime = 0;
+        let spinTimeTotal = 0;
+
+        // Adicionar drink
+        addDrinkBtn.addEventListener('click', () => {
+            const drinkName = drinkInput.value.trim();
+            if (drinkName && !drinks.includes(drinkName)) {
+                drinks.push(drinkName);
+                const li = document.createElement('li');
+                li.textContent = drinkName;
+                drinkList.appendChild(li);
+                drinkInput.value = '';
+                drawRouletteWheel();
+            }
+        });
+
+        // Desenhar roleta
+        function drawRouletteWheel() {
+            if (drinks.length === 0) {
+                ctx.clearRect(0, 0, 400, 400);
+                return;
+            }
+
+            arc = 2 * Math.PI / drinks.length;
+            const outsideRadius = 180;
+            const textRadius = 130;
+            const insideRadius = 50;
+
+            ctx.clearRect(0, 0, 400, 400);
+
+            for (let i = 0; i < drinks.length; i++) {
+                const angle = startAngle + i * arc;
+                ctx.fillStyle = colors[i % colors.length];
+                ctx.beginPath();
+                ctx.arc(200, 200, outsideRadius, angle, angle + arc, false);
+                ctx.arc(200, 200, insideRadius, angle + arc, angle, true);
+                ctx.fill();
+
+                // Texto
+                ctx.save();
+                ctx.fillStyle = "#fff";
+                ctx.translate(200 + Math.cos(angle + arc / 2) * textRadius,
+                    200 + Math.sin(angle + arc / 2) * textRadius);
+                ctx.rotate(angle + arc / 2 + Math.PI / 2);
+                ctx.font = "16px Arial";
+                ctx.textAlign = "center";
+                ctx.fillText(drinks[i], 0, 0);
+                ctx.restore();
+            }
+
+            // Indicador
+            ctx.fillStyle = "#ff6f00";
+            ctx.beginPath();
+            ctx.moveTo(200 - 10, 200 - 180 - 5);
+            ctx.lineTo(200 + 10, 200 - 180 - 5);
+            ctx.lineTo(200, 200 - 180 + 15);
+            ctx.fill();
+        }
+
+        function spin() {
+            if (drinks.length === 0) {
+                alert("Adicione pelo menos um drink!");
+                return;
+            }
+            spinAngleStart = Math.random() * 10 + 10;
+            spinTime = 0;
+            spinTimeTotal = Math.random() * 3000 + 4000;
+            rotateWheel();
+        }
+
+        function rotateWheel() {
+            spinTime += 30;
+            if (spinTime >= spinTimeTotal) {
+                stopRotateWheel();
+                return;
+            }
+            const spinAngle = spinAngleStart * (1 - spinTime / spinTimeTotal);
+            startAngle += (spinAngle * Math.PI / 180);
+            drawRouletteWheel();
+            spinTimeout = setTimeout(rotateWheel, 30);
+        }
+
+        function stopRotateWheel() {
+            clearTimeout(spinTimeout);
+            const degrees = startAngle * 180 / Math.PI + 90;
+            const arcd = arc * 180 / Math.PI;
+            const index = Math.floor((360 - degrees % 360) / arcd);
+            result.textContent = `🍹 O drink sorteado é: ${drinks[index]}!`;
+        }
+
+        drawRouletteWheel();
+        spinBtn.addEventListener('click', spin);
+
+        function stopRotateWheel() {
+            clearTimeout(spinTimeout);
+            const degrees = startAngle * 180 / Math.PI + 90;
+            const arcd = arc * 180 / Math.PI;
+            const index = Math.floor((360 - degrees % 360) / arcd);
+            const drink = drinks[index];
+
+            // Mostrar overlay
+            const overlay = document.getElementById('overlay-result');
+            const overlayText = document.getElementById('overlay-text');
+            overlayText.textContent = `🍹 O drink sorteado é: ${drink}!`;
+            overlay.classList.add('show');
+
+            // Esconder depois de 3 segundos
+            setTimeout(() => {
+                overlay.classList.remove('show');
+            }, 3000);
+        }
+    </script>
+</body>
+
+</html>
