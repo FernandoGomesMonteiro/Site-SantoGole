@@ -1,130 +1,73 @@
-/* ==========================================================================
-   SANTO GOLE - ARQUIVO DE ESTILO PRINCIPAL E UNIFICADO
-   ========================================================================== */
-
-/* -------------------------------------------------------------------------- */
-/* 01. VARIÁVEIS GLOBAIS E CONFIGURAÇÕES DE BASE
-/* -------------------------------------------------------------------------- */
-:root {
-    --primary-color: #FF6B35;
-    --secondary-color: #F7931E;
-    --dark-color: #0a0a0a;
-    --darker-color: #000000;
-    --text-light: #fafafa;
-    --text-muted: #b0b0b0;
-    --gradient-primary: linear-gradient(135deg, #FF6B35 0%, #F7931E 100%);
-    --gradient-dark: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
-    --glass-bg: rgba(255, 255, 255, 0.05);
-    --glass-border: rgba(255, 255, 255, 0.15);
-    --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.3);
-    --shadow-large: 0 15px 40px rgba(0, 0, 0, 0.5);
-    --shadow-glow: 0 0 30px rgba(255, 107, 53, 0.6);
-    --border-radius: 20px;
-    --border-radius-sm: 12px;
-    --transition-medium: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: 'Inter', sans-serif;
-    background: var(--gradient-dark);
-    color: var(--text-light);
-    line-height: 1.6;
-    overflow-x: hidden;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-}
-
-a {
-    text-decoration: none;
-    color: inherit;
-}
-
-/* -------------------------------------------------------------------------- */
-/* 02. HEADER E NAVEGAÇÃO
-/* -------------------------------------------------------------------------- */
-.main-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
+.hero {
+    background:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)),
+        url('https://www.mayorhospitality.com/wp-content/uploads/2023/10/attractive-male-bartender-pouring-essence-from-spoon-flame-steel-shaker-scaled.jpg') center/cover;
+    height: calc(80vh - 80px);
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    padding: 1rem 5%;
-    height: 80px;
-    background: transparent;
-    transition: background 0.3s ease, border-bottom 0.3s ease;
-}
-
-/* Adicione a classe .scrolled ao header com JavaScript para este efeito */
-.main-header.scrolled {
-    background: var(--glass-bg);
-    backdrop-filter: blur(15px);
-    border-bottom: 1px solid var(--glass-border);
-}
-
-.logo {
-    font-size: 1.8rem;
-    font-weight: 700;
-}
-
-.logo span {
-    color: var(--primary-color);
-}
-
-.desktop-nav a {
-    margin: 0 1.5rem;
-    font-weight: 500;
+    color: var(--text-light);
+    padding: 2rem;
     position: relative;
-    transition: color 0.3s ease;
+    overflow: hidden;
+    margin-top: 0;
 }
 
-.desktop-nav a::after {
+.hero::before {
     content: '';
     position: absolute;
-    bottom: -5px;
+    top: 0;
     left: 0;
-    width: 0;
-    height: 2px;
+    right: 0;
+    bottom: 0;
     background: var(--gradient-primary);
-    transition: width var(--transition-medium);
+    opacity: 0.05;
 }
 
-.desktop-nav a:hover, .desktop-nav a.active {
-    color: var(--primary-color);
-}
-.desktop-nav a:hover::after, .desktop-nav a.active::after {
-    width: 100%;
-}
-
-.hamburger, .close-btn {
-    display: none;
-    background: none;
-    border: none;
-    color: var(--text-light);
-    font-size: 1.8rem;
-    cursor: pointer;
-    z-index: 1001;
+.hero-content {
+    max-width: 900px;
+    text-align: left;
+    margin: 0;
+    padding-left: 8%;
+    position: relative;
+    z-index: 2;
 }
 
-.mobile-nav {
-    display: none;
+.hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 50%, var(--secondary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: slideInLeft 0.8s ease-out;
+    font-weight: 900;
+    line-height: 1.1;
 }
+
+.hero p {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    text-align: left;
+    opacity: 0.9;
+    animation: slideInLeft 0.8s ease-out 0.2s both;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
 
 /* -------------------------------------------------------------------------- */
 /* 03. ESTILOS GERAIS DE PÁGINA (HEADER, SEÇÕES, ETC)
@@ -151,7 +94,9 @@ a {
     margin: 0 auto;
 }
 
-.about-mission, .our-values, .sophisticated-section {
+.about-mission,
+.our-values,
+.sophisticated-section {
     padding: 6rem 5%;
     max-width: 1200px;
     margin: 0 auto;
@@ -170,6 +115,7 @@ a {
     flex: 1;
     min-width: 300px;
 }
+
 .mission-image img {
     width: 100%;
     border-radius: var(--border-radius-sm);
@@ -179,6 +125,7 @@ a {
 .mission-text {
     flex: 1.2;
 }
+
 .mission-text h2 {
     font-family: 'Playfair Display', serif;
     font-size: clamp(2rem, 4vw, 2.8rem);
@@ -192,6 +139,7 @@ a {
 .our-values {
     text-align: center;
 }
+
 .our-values h2 {
     font-family: 'Playfair Display', serif;
     font-size: clamp(2rem, 4vw, 2.8rem);
@@ -199,11 +147,13 @@ a {
     text-align: center;
     width: 100%;
 }
+
 .values-container {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 2rem;
 }
+
 .value-card {
     padding: 2.5rem 1.5rem;
     border-radius: var(--border-radius);
@@ -212,13 +162,18 @@ a {
     backdrop-filter: blur(10px);
     transition: all var(--transition-medium);
 }
+
 .value-card:hover {
     transform: translateY(-12px);
     box-shadow: var(--shadow-glow);
 }
+
 .value-card i {
-    font-size: 2.5rem; color: var(--primary-color); margin-bottom: 1.5rem;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1.5rem;
 }
+
 .value-card h3 {
     font-family: 'Playfair Display', serif;
     font-size: 1.5rem;
@@ -230,9 +185,20 @@ a {
     align-items: center;
     gap: 4rem;
 }
-.sophisticated-text { flex: 1.2; }
-.sophisticated-image { flex: 1; min-width: 300px; }
-.sophisticated-image img { border-radius: var(--border-radius-sm); box-shadow: var(--shadow-large); }
+
+.sophisticated-text {
+    flex: 1.2;
+}
+
+.sophisticated-image {
+    flex: 1;
+    min-width: 300px;
+}
+
+.sophisticated-image img {
+    border-radius: var(--border-radius-sm);
+    box-shadow: var(--shadow-large);
+}
 
 /* -------------------------------------------------------------------------- */
 /* 05. FOOTER
@@ -242,29 +208,76 @@ a {
     padding: 4rem 5% 2rem;
     border-top: 1px solid var(--glass-border);
 }
+
 .footer-content {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 2rem;
     margin-bottom: 3rem;
 }
-.footer-logo h3 { font-size: 1.8rem; }
-.footer-logo h3 span { color: var(--primary-color); }
-.social-links { display: flex; gap: 1rem; margin-top: 1rem; }
-.social-links a { font-size: 1.2rem; transition: color 0.3s ease; }
-.social-links a:hover { color: var(--primary-color); }
-.footer-links h4 { margin-bottom: 1rem; }
-.footer-links ul { list-style: none; }
-.footer-links a { display: block; padding: 0.3rem 0; color: var(--text-muted); transition: color 0.3s ease; }
-.footer-links a:hover { color: var(--primary-color); }
-.copyright-area { text-align: center; color: var(--text-muted); padding-top: 2rem; border-top: 1px solid var(--glass-border); font-size: 0.9rem; }
+
+.footer-logo h3 {
+    font-size: 1.8rem;
+}
+
+.footer-logo h3 span {
+    color: var(--primary-color);
+}
+
+.social-links {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1rem;
+}
+
+.social-links a {
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--primary-color);
+}
+
+.footer-links h4 {
+    margin-bottom: 1rem;
+}
+
+.footer-links ul {
+    list-style: none;
+}
+
+.footer-links a {
+    display: block;
+    padding: 0.3rem 0;
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--primary-color);
+}
+
+.copyright-area {
+    text-align: center;
+    color: var(--text-muted);
+    padding-top: 2rem;
+    border-top: 1px solid var(--glass-border);
+    font-size: 0.9rem;
+}
 
 /* -------------------------------------------------------------------------- */
 /* 06. RESPONSIVIDADE
 /* -------------------------------------------------------------------------- */
 @media (max-width: 992px) {
-    .desktop-nav { display: none; }
-    .hamburger { display: block; z-index: 1002; }
+    .desktop-nav {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+        z-index: 1002;
+    }
 
     .mobile-nav {
         display: flex;
@@ -282,24 +295,30 @@ a {
         transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         z-index: 1001;
     }
+
     .mobile-nav.active {
         transform: translateX(0);
     }
+
     .mobile-nav a {
         font-size: 1.5rem;
     }
+
     .close-btn {
         display: block;
         position: absolute;
         top: 1.5rem;
         right: 5%;
     }
-    .about-mission .mission-content, 
-    .sophisticated-section .sophisticated-content { 
-        flex-direction: column; 
-        text-align: center; 
-    }
+
+    .about-mission .mission-content,
     .sophisticated-section .sophisticated-content {
-        flex-direction: column-reverse; /* Coloca a imagem acima do texto no mobile */
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .sophisticated-section .sophisticated-content {
+        flex-direction: column-reverse;
+        /* Coloca a imagem acima do texto no mobile */
     }
 }

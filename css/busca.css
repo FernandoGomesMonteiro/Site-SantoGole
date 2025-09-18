@@ -1,78 +1,12 @@
-:root {
-    --primary-color: #FF6B35;
-    --secondary-color: #F7931E;
-    --accent-color: #FF1744;
-    --dark-color: #0a0a0a;
-    --darker-color: #000000;
-    --light-color: #fafafa;
-    --text-light: #ffffff;
-    --text-muted: #b0b0b0;
-    --glass-bg: rgba(255, 255, 255, 0.08);
-    --glass-border: rgba(255, 255, 255, 0.15);
-    --glass-hover: rgba(255, 255, 255, 0.12);
-    --gradient-primary: linear-gradient(135deg, #FF6B35 0%, #F7931E 25%, #FF8C00 50%, #FF6B35 100%);
-    --gradient-secondary: linear-gradient(135deg, #FF1744 0%, #FF6B35 50%, #FF8C00 100%);
-    --gradient-glass: linear-gradient(135deg, rgba(255, 107, 53, 0.3) 0%, rgba(247, 147, 30, 0.2) 50%, rgba(255, 23, 68, 0.1) 100%);
-    --gradient-dark: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 50%, #0a0a0a 100%);
-    --shadow-light: 0 4px 20px rgba(0, 0, 0, 0.3);
-    --shadow-medium: 0 8px 32px rgba(0, 0, 0, 0.4);
-    --shadow-large: 0 15px 40px rgba(0, 0, 0, 0.5);
-    --shadow-glow: 0 0 30px rgba(255, 107, 53, 0.6);
-    --card-bg: rgba(255, 255, 255, 0.03);
-    --card-hover: rgba(255, 255, 255, 0.08);
-    --border-radius: 20px;
-    --border-radius-sm: 12px;
-    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-medium: 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-    --transition-slow: 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-}
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-    color: var(--text-light);
-    line-height: 1.6;
-    overflow-x: hidden;
-    scroll-behavior: smooth;
-    background: var(--gradient-dark);
-    background-attachment: fixed;
-    position: relative;
-    padding-top: 80px;
-    min-height: 100vh;
-    animation: fadeIn 0.8s ease-out;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-h1, h2, h3, h4 {
-    font-family: 'Playfair Display', serif;
-    font-weight: 700;
-}
-
-/* Header e Navegação - Glassmorphism Premium */
-
-
-/* Hero Section - Premium com animações */
 .hero {
-    background: 
-        radial-gradient(ellipse at top, rgba(255, 107, 53, 0.3) 0%, transparent 50%),
-        radial-gradient(ellipse at bottom, rgba(255, 23, 68, 0.2) 0%, transparent 50%),
-        linear-gradient(135deg, rgba(10, 10, 10, 0.8) 0%, rgba(26, 26, 26, 0.9) 100%),
-        url('https://images.unsplash.com/photo-1470337458703-46ad1756a187?ixlib=rb-1.2.1&auto=format&fit=crop&w=1500&q=80') center/cover;
-    height: calc(70vh - 80px);
+    background:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)),
+        url('https://sitedesp.com.br/wp-content/uploads/2022/04/drinks-tudo-que-drinkeros-precisam-saber-para-fazer-drinks-saborosos.png') center/cover;
+    height: calc(80vh - 80px);
     display: flex;
     align-items: center;
     color: var(--text-light);
     padding: 2rem;
-    margin-bottom: 4rem;
     position: relative;
     overflow: hidden;
     margin-top: 0;
@@ -126,50 +60,13 @@ h1, h2, h3, h4 {
         opacity: 0;
         transform: translateX(-50px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
     }
 }
 
-.hero-btn {
-    display: inline-block;
-    padding: 1.2rem 3rem;
-    background: var(--gradient-primary);
-    color: white;
-    text-decoration: none;
-    border-radius: 50px;
-    font-weight: 600;
-    font-size: 1.1rem;
-    box-shadow: var(--shadow-medium);
-    transition: all var(--transition-medium);
-    position: relative;
-    overflow: hidden;
-    animation: slideInLeft 0.8s ease-out 0.4s both;
-}
-
-.hero-btn::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 0;
-    height: 0;
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 50%;
-    transition: all var(--transition-slow);
-    transform: translate(-50%, -50%);
-}
-
-.hero-btn:hover::before {
-    width: 400px;
-    height: 400px;
-}
-
-.hero-btn:hover {
-    transform: translateY(-5px) scale(1.05);
-    box-shadow: var(--shadow-glow);
-}
 
 /* Seção de Busca */
 .search-section {
@@ -436,11 +333,13 @@ h1, h2, h3, h4 {
     margin-bottom: 0.5rem;
 }
 
-.modal-ingredients, .modal-instructions {
+.modal-ingredients,
+.modal-instructions {
     margin-bottom: 2rem;
 }
 
-.modal-ingredients h3, .modal-instructions h3 {
+.modal-ingredients h3,
+.modal-instructions h3 {
     color: var(--secondary-color);
     margin-bottom: 1rem;
 }
@@ -608,51 +507,51 @@ h1, h2, h3, h4 {
     .hero h1 {
         font-size: clamp(2rem, 8vw, 3.5rem);
     }
-    
+
     .hero p {
         font-size: clamp(1rem, 3vw, 1.25rem);
         padding: 0 1rem;
     }
-    
+
     .filters-section {
         margin: 1.5rem;
         padding: 2rem;
         border-radius: var(--border-radius);
     }
-    
+
     .filters-grid {
         grid-template-columns: 1fr;
         gap: 1.5rem;
     }
-    
+
     .results-grid {
         grid-template-columns: 1fr;
         gap: 2rem;
         padding: 0 1.5rem;
     }
-    
+
     .nav-links {
         display: none;
     }
-    
+
     .mobile-menu-toggle {
         display: block;
     }
-    
+
     .result-card {
         margin: 0;
         border-radius: var(--border-radius);
     }
-    
+
     .result-card:hover {
         transform: translateY(-10px) scale(1.01);
     }
-    
+
     .filter-group input,
     .filter-group select {
         padding: 0.875rem 1rem;
     }
-    
+
     .clear-filters {
         width: 100%;
         margin-top: 1rem;
@@ -664,25 +563,25 @@ h1, h2, h3, h4 {
         padding: 3rem 1rem;
         min-height: 60vh;
     }
-    
+
     .filters-section {
         margin: 1rem;
         padding: 1.5rem;
     }
-    
+
     .results-grid {
         padding: 0 1rem;
         gap: 1.5rem;
     }
-    
+
     .result-content {
         padding: 1.5rem;
     }
-    
+
     .result-content h3 {
         font-size: 1.3rem;
     }
-    
+
     .view-recipe {
         padding: 0.875rem 1.5rem;
         font-size: 0.85rem;
@@ -695,6 +594,7 @@ h1, h2, h3, h4 {
         opacity: 0;
         transform: translateY(30px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -736,6 +636,11 @@ h1, h2, h3, h4 {
 }
 
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }

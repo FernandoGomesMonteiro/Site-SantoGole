@@ -17,6 +17,7 @@
     <link rel="canonical" href="https://santogole.com/catalogo.html">
 
     <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/catalagoTeste.css">
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -24,10 +25,10 @@
 </head>
 
 <body>
-      <header class="main-header" id="main-header">
+    <header class="main-header" id="main-header">
         <a href="index.html" class="logo">Santo<span>Gole</span></a>
 
-           <nav class="desktop-nav">
+        <nav class="desktop-nav">
             <a href="index.html">Início</a>
             <a href="/catalogo.html" class="active">Catálogo</a>
             <a href="/roleta.html">Roleta</a>
@@ -84,16 +85,16 @@
                         <input type="text" id="search-input" placeholder="Digite o nome do drink..."
                             aria-label="Buscar drinks por nome">
                     </div>
-                    
+
                 </div>
             </div>
         </section>
 
         <!-- Catálogo de Drinks -->
         <div class="container">
-             <div class="results-counter" id="results-counter" aria-live="polite">
-                        Mostrando <span id="total-results">0</span> drinks
-                    </div>
+            <div class="results-counter" id="results-counter" aria-live="polite">
+                Mostrando <span id="total-results">0</span> drinks
+            </div>
             <div class="catalog-grid" id="drinks-container" role="list" aria-live="polite">
                 <!-- Os cards de drinks serão inseridos aqui via JavaScript -->
             </div>
@@ -111,22 +112,9 @@
         </div>
     </main>
 
-    <!-- Footer Premium -->
-    <footer class="catalog-footer" role="contentinfo">
-        <div class="catalog-footer-content">
-            <div class="catalog-footer-brand">SantoGole</div>
-            <div class="catalog-footer-text">
-                Elevando a arte da coquetelaria
-            </div>
-            <div class="catalog-footer-text" style="opacity: 0.7; font-size: 0.9rem;">
-                &copy; 2024 SantoGole. Todos os direitos reservados.
-            </div>
-        </div>
-    </footer>
-
     <script src="js/catalogo.js"></script>
-
-
+    <script src="js/menu.js"></script>
+    <script src="js/footer.js"></script>
 </body>
 
 </html>

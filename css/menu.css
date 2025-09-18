@@ -110,3 +110,17 @@ body {
 .desktop-nav a.active {
     color: var(--primary-color);
 }
+
+.hamburger, .close-btn {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--text-light);
+    font-size: 1.8rem;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.mobile-nav {
+    display: none;
+}
