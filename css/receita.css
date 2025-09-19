@@ -1,0 +1,147 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.hero {
+    padding: 70px 100px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.hero-flex {
+    display: flex;
+    width: 100%;
+
+    align-items: center;
+    justify-content: center;
+    align-self: center;
+
+    padding: 10px;
+
+}
+
+.hero-text {
+    width: 50%;
+    height: 100%;
+    min-width: 300px;
+    
+    align-items: center;
+    align-self: center;
+    background-color: #FFAF38;
+
+    border-radius: 20px;
+
+}
+
+.hero-image-container {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    min-width: 250px;
+}
+
+.hero-image-container img {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    object-fit: cover;
+}
+
+
+.hero-btn {
+    margin-bottom: 10px;
+    width: 200px;
+    text-align: center;
+
+    padding: 10px;
+    background: var(--gradient-primary);
+    color: white;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    font-size: 15px;
+    box-shadow: var(--shadow-medium);
+    transition: all var(--transition-medium);
+    position: relative;
+    overflow: hidden;
+    animation: slideInLeft 0.8s ease-out 0.4s both;
+}
+
+/* Detalhes do drink */
+.drink-detail {
+    display: grid;
+    grid-template-columns: 1fr;
+}
+
+@media (min-width: 768px) {
+    .hero-flex {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: flex-start;
+    }
+
+    .drink-detail,
+    .hero-content {
+        width: 100%;
+        padding: 10px;
+    }
+}
+ /*
+.drink-info h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+}*/
+
+.meta-info {
+    display: flex;
+    gap: 5px;
+    margin-bottom: 25px;
+    flex-wrap: wrap;
+}
+
+.meta-tag {
+    padding: 6px 12px;
+    background: #FFCC80;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.ingredients-section,
+.instructions-section {
+    margin-bottom: 15px;
+}
+
+.ingredients-list {
+    list-style: none;
+    margin-top: 10px;
+}
+
+.ingredients-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid #334155;
+    display: flex;
+    justify-content: space-between;
+}
+
+.instructions {
+    margin-top: 15px;
+    padding: 15px;
+    background: #FFCC80;
+    border-radius: 8px;
+    line-height: 1.8;
+}
+
+.loading {
+    text-align: center;
+    padding: 50px 0;
+}
+
+.error-message {
+    text-align: center;
+    padding: 50px 20px;
+    color: #ef4444;
+}
