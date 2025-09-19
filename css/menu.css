@@ -35,7 +35,7 @@ html {
 }
 
 body {
-    background: linear-gradient(135deg, #0a0f1c 0%, #1a2332 30%, #2d3748 70%, #4a5568 100%);
+    background: linear-gradient(135deg, var(--dark-color) 0%, #1e293b 100%);
 
 }
 
@@ -111,7 +111,8 @@ body {
     color: var(--primary-color);
 }
 
-.hamburger, .close-btn {
+.hamburger,
+.close-btn {
     display: none;
     background: none;
     border: none;
