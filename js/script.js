@@ -26,12 +26,12 @@ mobileNavLinks.forEach(link => {
 // ==========================================
 document.addEventListener('DOMContentLoaded', () => {
     const drinks = [
-        { id: 1, name: "Negroni Clássico", description: "Um cocktail italiano atemporal com gin, vermute tinto e Campari.", image: "https://images.unsplash.com/photo-1551538827-9c037cb4f32a?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", category: "classicos", ingredients: [ "30ml de Gin", "30ml de Vermute Rosso", "30ml de Campari", "Gelo", "Lasca de laranja para decorar" ], instructions: [ "Encha um copo baixo com gelo", "Adicione quantidades iguais de Gin, Vermute e Campari", "Mexa suavemente por 30 segundos", "Decore com uma lasca de laranja" ] },
-        { id: 2, name: "Mojito Tropical", description: "Um refrescante drink cubano com rum, hortelã, limão e água com gás.", image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", category: "tropicais", ingredients: [ "50ml de rum branco", "6 folhas de hortelã", "30ml de suco de limão", "2 colheres de chá de açúcar", "Água com gás", "Gelo" ], instructions: [ "Amasse as folhas de hortelã com o açúcar e suco de limão", "Adicione o rum e gelo picado", "Complete com água com gás", "Mexa suavemente e decore com hortelã" ] },
-        { id: 3, name: "Piña Colada Zero", description: "A versão sem álcool do clássico drink tropical com abacaxi e coco.", image: "https://images.unsplash.com/photo-1549746423-a5cb8a0b4a99?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", category: "sem-alcool", ingredients: [ "100ml de suco de abacaxi", "50ml de leite de coco", "2 colheres de sorvete de coco", "Gelo", "Fatia de abacaxi para decorar" ], instructions: [ "Bata todos os ingredientes no liquidificador", "Sirva em copo alto", "Decore com fatia de abacaxi" ] },
-        { id: 4, name: "Sunset Passion", description: "Nossa criação exclusiva com vodka, maracujá e um toque de pimenta.", image: "https://images.unsplash.com/photo-1560963689-2e9c934312af?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", category: "autorais", ingredients: [ "50ml de vodka", "30ml de licor de maracujá", "20ml de suco de limão", "Xarope de pimenta a gosto", "Gelo" ], instructions: [ "Agite todos os ingredientes na coqueteleira com gelo", "Coe para um copo frostado", "Finalize com algumas gotas de xarope de pimenta" ] },
-        { id: 5, name: "Old Fashioned", description: "Um clássico americano com whisky, açúcar e bitter.", image: "https://images.unsplash.com/photo-1470337458703-46ad1756a187?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", category: "classicos", ingredients: [ "60ml de whisky bourbon", "1 colher de chá de açúcar", "2-3 gotas de bitter", "Gelo", "Casca de laranja" ], instructions: [ "Dissolva o açúcar com o bitter e um pouco de água", "Adicione gelo e o whisky", "Mexa suavemente por 30 segundos", "Decore com casca de laranja" ] },
-        { id: 6, name: "Margarita de Manga", description: "Uma versão tropical da margarita tradicional com tequila e manga.", image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", category: "tropicais", ingredients: [ "50ml de tequila", "25ml de licor de laranja", "30ml de suco de limão", "50ml de purê de manga", "Gelo", "Sal para a borda do copo" ], instructions: [ "Umedeça a borda do copo e mergulhe no sal", "Adicione todos os ingredientes na coqueteleira com gelo", "Agite vigorosamente por 15 segundos", "Coe para o copo preparado" ] }
+        { id: 1, name: "Negroni Clássico", description: "Um cocktail italiano atemporal com gin, vermute tinto e Campari.", image: "https://assets.tmecosys.com/image/upload/t_web_rdp_recipe_584x480/img/recipe/ras/Assets/1D4CCB7D-D830-4ED3-9535-875D10CFC801/Derivates/DAD3AE52-E326-4309-90BA-10F6BEEB1EC7.jpg", category: "classicos", ingredients: ["30ml de Gin", "30ml de Vermute Rosso", "30ml de Campari", "Gelo", "Lasca de laranja para decorar"], instructions: ["Encha um copo baixo com gelo", "Adicione quantidades iguais de Gin, Vermute e Campari", "Mexa suavemente por 30 segundos", "Decore com uma lasca de laranja"] },
+        { id: 2, name: "Mojito Tropical", description: "Um refrescante drink cubano com rum, hortelã, limão e água com gás.", image: "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", category: "tropicais", ingredients: ["50ml de rum branco", "6 folhas de hortelã", "30ml de suco de limão", "2 colheres de chá de açúcar", "Água com gás", "Gelo"], instructions: ["Amasse as folhas de hortelã com o açúcar e suco de limão", "Adicione o rum e gelo picado", "Complete com água com gás", "Mexa suavemente e decore com hortelã"] },
+        { id: 3, name: "Piña Colada Zero", description: "A versão sem álcool do clássico drink tropical com abacaxi e coco.", image: "https://c8.alamy.com/comp/2SPYNW3/pina-colada-cocktails-at-a-bar-2SPYNW3.jpg", category: "sem-alcool", ingredients: ["100ml de suco de abacaxi", "50ml de leite de coco", "2 colheres de sorvete de coco", "Gelo", "Fatia de abacaxi para decorar"], instructions: ["Bata todos os ingredientes no liquidificador", "Sirva em copo alto", "Decore com fatia de abacaxi"] },
+        { id: 4, name: "Sunset Passion", description: "Nossa criação exclusiva com vodka, maracujá e um toque de pimenta.", image: "https://img.freepik.com/premium-photo/sunset-blend-juice-mix-juice-strawberry-passion-fruit-orange-apple-juice-yellow-red-color_765331-507.jpg", category: "autorais", ingredients: ["50ml de vodka", "30ml de licor de maracujá", "20ml de suco de limão", "Xarope de pimenta a gosto", "Gelo"], instructions: ["Agite todos os ingredientes na coqueteleira com gelo", "Coe para um copo frostado", "Finalize com algumas gotas de xarope de pimenta"] },
+        { id: 5, name: "Old Fashioned", description: "Um clássico americano com whisky, açúcar e bitter.", image: "https://pendletonwhisky.com/wp-content/uploads/2020/12/1910-oldfashioned@4x-2-1.jpg", category: "classicos", ingredients: ["60ml de whisky bourbon", "1 colher de chá de açúcar", "2-3 gotas de bitter", "Gelo", "Casca de laranja"], instructions: ["Dissolva o açúcar com o bitter e um pouco de água", "Adicione gelo e o whisky", "Mexa suavemente por 30 segundos", "Decore com casca de laranja"] },
+        { id: 6, name: "Margarita de Manga", description: "Uma versão tropical da margarita tradicional com tequila e manga.", image: "https://images.unsplash.com/photo-1544145945-f90425340c7e?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80", category: "tropicais", ingredients: ["50ml de tequila", "25ml de licor de laranja", "30ml de suco de limão", "50ml de purê de manga", "Gelo", "Sal para a borda do copo"], instructions: ["Umedeça a borda do copo e mergulhe no sal", "Adicione todos os ingredientes na coqueteleira com gelo", "Agite vigorosamente por 15 segundos", "Coe para o copo preparado"] }
     ];
 
     const carouselTrack = document.querySelector('.carousel-track');
@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', () => {
         indicatorsContainer.innerHTML = '';
         const itemsPerPage = Math.floor(trackContainer.clientWidth / (carouselTrack.querySelector('.drink-card')?.offsetWidth || 340));
         const totalPages = Math.ceil(filteredDrinks.length / itemsPerPage);
-        
+
         if (totalPages <= 1) return;
 
         for (let i = 0; i < totalPages; i++) {
@@ -128,10 +128,10 @@ document.addEventListener('DOMContentLoaded', () => {
             const scrollAmount = trackContainer.clientWidth * 0.8 * (direction === 'next' ? 1 : -1);
             trackContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
         };
-        
+
         nextButton.addEventListener('click', () => navigate('next'));
         prevButton.addEventListener('click', () => navigate('prev'));
-        
+
         trackContainer.addEventListener('scroll', updateCarouselUI);
         window.addEventListener('resize', updateCarouselUI);
     }
@@ -151,12 +151,12 @@ document.addEventListener('DOMContentLoaded', () => {
     function setupModal() {
         const modalContainer = document.getElementById('recipe-modal-container');
         const closeModalBtn = document.getElementById('close-modal-btn');
-        
+
         const closeModal = () => {
             modalContainer.classList.remove('show');
             document.body.style.overflow = '';
         };
-        
+
         closeModalBtn.addEventListener('click', closeModal);
         modalContainer.addEventListener('click', (e) => {
             if (e.target === modalContainer) closeModal();

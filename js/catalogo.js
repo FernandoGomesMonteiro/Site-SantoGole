@@ -124,11 +124,11 @@ document.addEventListener('DOMContentLoaded', function() {
         // ***** ALTERAÇÃO APLICADA AQUI *****
         // Agora a tag <a> envolve todo o card do drink.
         drinksContainer.innerHTML = currentDrinks.map(drink => `
-            <a href="detalhes.html?id=${drink.idDrink}" class="drink-card-link">
+            <a href="detalhes.html?id=${drink.idDrink}" class="drink-card-link" style = "text-decoration: none;">
                 <div class="drink-card">
                     <img src="${drink.strDrinkThumb}/preview" alt="${drink.strDrink}" class="drink-image">
                     <div class="drink-info">
-                        <h3 class="drink-name">${drink.strDrink}</h3>
+                        <h1 class="drink-name">${drink.strDrink}</h1>
                         <p class="drink-category">${drink.strCategory}</p>
                         <div class="drink-tags">
                             <span class="drink-tag">${drink.strAlcoholic || 'Unknown'}</span>
