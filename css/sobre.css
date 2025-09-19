@@ -1,0 +1,193 @@
+.hero {
+    background:
+        linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)),
+        url('https://www.mayorhospitality.com/wp-content/uploads/2023/10/attractive-male-bartender-pouring-essence-from-spoon-flame-steel-shaker-scaled.jpg') center/cover;
+    height: calc(80vh - 80px);
+    display: flex;
+    align-items: center;
+    color: var(--text-light);
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    margin-top: 0;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-primary);
+    opacity: 0.05;
+}
+
+.hero-content {
+    max-width: 900px;
+    text-align: left;
+    margin: 0;
+    padding-left: 8%;
+    position: relative;
+    z-index: 2;
+}
+
+.hero h1 {
+    font-size: clamp(2.5rem, 5vw, 4.5rem);
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 50%, var(--secondary-color) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: slideInLeft 0.8s ease-out;
+    font-weight: 900;
+    line-height: 1.1;
+}
+
+.hero p {
+    font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+    margin-bottom: 2.5rem;
+    max-width: 600px;
+    text-align: left;
+    opacity: 0.9;
+    animation: slideInLeft 0.8s ease-out 0.2s both;
+    font-weight: 300;
+    letter-spacing: 0.5px;
+}
+
+@keyframes slideInLeft {
+    from {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+
+
+/* Fade-in padrão */
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 1s ease forwards;
+}
+@keyframes fadeInUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Sessão Missão */
+.about-mission {
+  padding: 60px 20px;
+}
+.mission-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.mission-text {
+  flex: 1 1 50%;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  backdrop-filter: blur(6px);
+}
+.mission-text h2 {
+  color: #ffb347;
+  margin-bottom: 15px;
+  font-size: 2rem;
+}
+.mission-text p {
+  margin-bottom: 12px;
+  line-height: 1.6;
+}
+.mission-image {
+  flex: 1 1 40%;
+  text-align: center;
+}
+.mission-image img {
+  max-width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease;
+}
+.mission-image img:hover {
+  transform: scale(1.05);
+}
+
+/* Sessão Valores */
+.our-values {
+  padding: 60px 20px;
+  text-align: center;
+}
+.our-values h2 {
+  margin-bottom: 40px;
+  color: #43e97b;
+  font-size: 2rem;
+  text-shadow: 0 0 8px rgba(67, 233, 123, 0.7);
+}
+.values-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 25px;
+}
+.value-card {
+  background: rgba(255, 255, 255, 0.05);
+  padding: 25px;
+  border-radius: 18px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+  transition: transform 0.3s ease, background 0.3s ease;
+}
+.value-card:hover {
+  transform: translateY(-8px);
+  background: rgba(255,179,71,0.15);
+}
+.value-card i {
+  font-size: 2rem;
+  margin-bottom: 15px;
+  color: #ffb347;
+}
+.value-card h3 {
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
+
+/* Sessão Sobre */
+.sophisticated-section {
+  padding: 60px 20px;
+}
+.sophisticated-content {
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+.sophisticated-image {
+  flex: 1 1 40%;
+}
+.sophisticated-image img {
+  width: 100%;
+  border-radius: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease;
+}
+.sophisticated-image img:hover {
+  transform: scale(1.05);
+}
+.sophisticated-text {
+  flex: 1 1 50%;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.4);
+  line-height: 1.6;
+}

@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Descubra o catálogo completo de drinks e coquetéis do SantoGole. Explore receitas, ingredientes e técnicas de preparo.">
+    <meta name="keywords" content="drinks, coquetéis, receitas, bartender, mixologia, catálogo de drinks">
+    <meta name="author" content="SantoGole">
+    <meta name="robots" content="index, follow">
+    <meta property="og:title" content="Catálogo de Drinks - SantoGole">
+    <meta property="og:description" content="Explore nosso catálogo completo de drinks e coquetéis.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://santogole.com/catalogo.html">
+    <title>Catálogo de Drinks - SantoGole</title>
+    <link rel="canonical" href="https://santogole.com/catalogo.html">
+
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/footer.css">
+    <link rel="stylesheet" href="css/catalagoTeste.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <header class="main-header" id="main-header">
+        <a href="index.html" class="logo">Santo<span>Gole</span></a>
+
+        <nav class="desktop-nav">
+            <a href="index.html">Início</a>
+            <a href="/catalogo.html" class="active">Catálogo</a>
+            <a href="/roleta.html">Roleta</a>
+            <a href="/sobre.html">Sobre</a>
+        </nav>
+        <div>
+        </div>
+    </header>
+
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Descubra Novos Drinks</h1>
+            <p>Encontre receitas incríveis usando nossa busca inteligente ou surpreenda-se com um drink aleatório</p>
+        </div>
+    </section>
+
+    <main id="catalogo" class="catalog-section" aria-label="Catálogo de drinks">
+        <!-- Filtros e Ordenação -->
+        <section aria-labelledby="filter-heading">
+            <div class="container">
+                <div class="sophisticated-text">
+                    <h1>Catálogo de Drinks</h1>
+                </div>
+
+                <div class="filter-controls" role="form" aria-label="Filtros do catálogo">
+                    <div class="filter-group">
+                        <label for="category-filter">Categoria:</label>
+                        <select id="category-filter" aria-label="Filtrar por categoria">
+                            <option value="all">Todas as categorias</option>
+                            <option value="Ordinary_Drink">Bebida Ordinária</option>
+                            <option value="Cocktail">Coquetel</option>
+                            <option value="Shot">Shot</option>
+                            <option value="Punch_/_Party_Drink">Punch/Drink de Festa</option>
+                            <option value="Homemade_Liqueur">Licor Caseiro</option>
+                            <option value="Beer">Cerveja</option>
+                            <option value="Soft_Drink">Refrigerante</option>
+                            <option value="Other/Unknown">Outro/Desconhecido</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="sort-by">Ordenar por:</label>
+                        <select id="sort-by" aria-label="Ordenar resultados">
+                            <option value="name-asc">Nome (A-Z)</option>
+                            <option value="name-desc">Nome (Z-A)</option>
+                            <option value="category">Categoria</option>
+                        </select>
+                    </div>
+
+                    <div class="filter-group">
+                        <label for="search-input">Buscar:</label>
+                        <input type="text" id="search-input" placeholder="Digite o nome do drink..."
+                            aria-label="Buscar drinks por nome">
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Catálogo de Drinks -->
+        <div class="container">
+            <div class="results-counter" id="results-counter" aria-live="polite">
+                Mostrando <span id="total-results">0</span> drinks
+            </div>
+            <div class="catalog-grid" id="drinks-container" role="list" aria-live="polite">
+                <!-- Os cards de drinks serão inseridos aqui via JavaScript -->
+            </div>
+
+            <div class="loading-spinner" id="loading-spinner" aria-busy="true" aria-label="Carregando drinks">
+                <div class="spinner" aria-hidden="true"></div>
+                <p>Carregando drinks...</p>
+            </div>
+
+            <nav class="pagination" id="pagination" aria-label="Navegação de páginas">
+                <button class="pagination-btn" id="prev-page" aria-label="Página anterior" disabled>Anterior</button>
+                <span class="page-info" id="page-info" aria-current="page">Página 1 de 1</span>
+                <button class="pagination-btn" id="next-page" aria-label="Próxima página" disabled>Próxima</button>
+            </nav>
+        </div>
+    </main>
+
+    <script src="js/catalogo.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/footer.js"></script>
+</body>
+
+</html>

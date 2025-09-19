@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Santo Gole - A Arte da Coquetelaria</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/menu.css">
+    <link rel="stylesheet" href="css/footer.css">
+</head>
+
+</head>
+
+<body>
+    <header class="main-header" id="main-header">
+        <a href="index.html" class="logo">Santo<span>Gole</span></a>
+
+        <nav class="desktop-nav">
+            <a href="index.html" class="active">Início</a>
+            <a href="/catalogo.html">Catálogo</a>
+            <a href="/roleta.html">Roleta</a>
+            <a href="/sobre.html">Sobre</a>
+        </nav>
+        <div>
+        </div>
+    </header>
+
+    <button class="hamburger" id="hamburger-btn" aria-label="Abrir menu" aria-expanded="false"
+        aria-controls="mobile-nav">
+        <i class="fas fa-bars"></i>
+    </button>
+
+    <div class="mobile-nav" id="mobile-nav">
+        <button class="close-btn" id="close-btn" aria-label="Fechar menu">&times;</button>
+        <a href="#">Início</a>
+        <a href="#receitas">Receitas</a>
+        <a href="#sobre">Sobre</a>
+    </div>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>A arte da Coquetelaria</h1>
+            <p>Descubra receitas exclusivas e técnicas sofisticadas para criar drinks memoráveis.</p>
+            <div class="hero-buttons">
+                <a href="#receitas" class="hero-btn">
+                    <i class="fas fa-cocktail"></i> Explorar Receitas
+                </a>
+            </div>
+        </div>
+    </section>
+
+
+
+    <div class="filter-section fade-in">
+        <h2>Nossas Categorias de Drinks mais famosos</h2>
+        <div class="filters-container">
+            <button class="filter-btn active" data-filter="todos">
+                <i class="fas fa-cocktail"></i>
+                <span>Todos</span>
+            </button>
+            <button class="filter-btn" data-filter="classicos">
+                <i class="fas fa-crown"></i>
+                <span>Clássicos</span>
+            </button>
+            <button class="filter-btn" data-filter="tropicais">
+                <i class="fas fa-umbrella-beach"></i>
+                <span>Tropicais</span>
+            </button>
+            <button class="filter-btn" data-filter="sem-alcool">
+                <i class="fas fa-glass-whiskey"></i>
+                <span>Sem Álcool</span>
+            </button>
+            <button class="filter-btn" data-filter="autorais">
+                <i class="fas fa-star"></i>
+                <span>Autorais</span>
+            </button>
+        </div>
+
+        <section id="receitas" class="carousel-section fade-in">
+            <div class="carousel-container">
+                <button class="carousel-button prev" aria-label="Drink anterior">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+
+                <div class="carousel-track-container">
+                    <div class="carousel-track">
+                    </div>
+                </div>
+
+                <button class="carousel-button next" aria-label="Próximo drink">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </div>
+
+            <div class="carousel-indicators" id="carousel-indicators">
+            </div>
+        </section>
+    </div>
+
+    <section id="sobre" class="sophisticated-section fade-in">
+        <div class="sophisticated-content">
+            <div class="sophisticated-text">
+                <h2>A Arte dos Destilados</h2>
+                <p>Os drinks premium são muito mais que simples combinações de ingredientes. São expressões de cultura,
+                    história e sofisticação.</p>
+                <p>A verdadeira maestria na coquetelaria está em entender as nuances de cada ingrediente e como eles se
+                    harmonizam para criar uma experiência sensorial única.</p>
+                <p class="signature">- Rafael Silva, Master Mixologist</p>
+            </div>
+            <div class="sophisticated-image">
+                <img src="https://images.unsplash.com/photo-1536935338788-846bb9981813?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80"
+                    alt="Drink sofisticado sendo preparado em um bar elegante">
+            </div>
+        </div>
+    </section>
+
+    <div class="modal-container" id="recipe-modal-container">
+        <div class="modal-content">
+            <button class="close-modal" id="close-modal-btn" aria-label="Fechar receita">&times;</button>
+            <div id="modal-body">
+            </div>
+        </div>
+    </div>
+
+    <div class="toast-container" id="toast-container">
+    </div>
+
+    <script src="js/script.js"></script>
+    <script src="js/menu.js"></script>
+    <script src="js/footer.js"></script>
+</body>
+
+</html>
