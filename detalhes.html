@@ -1,226 +1,105 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Detalhes do Drink - SantoGole</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            background-color: #0f172a;
-            color: #f8fafc;
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .back-btn {
-            display: inline-flex;
-            align-items: center;
-            margin-bottom: 20px;
-            padding: 10px 16px;
-            background: #1e293b;
-            color: #f8fafc;
-            text-decoration: none;
-            border-radius: 8px;
-            transition: background 0.3s;
-        }
-        
-        .back-btn:hover {
-            background: #334155;
-        }
-        
-        .drink-detail {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 30px;
-            margin-top: 20px;
-        }
-        
-        @media (max-width: 768px) {
-            .drink-detail {
-                grid-template-columns: 1fr;
-            }
-        }
-        
-        .drink-image {
-            width: 100%;
-            border-radius: 12px;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-        }
-        
-        .drink-info h1 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-            color: #f8fafc;
-        }
-        
-        .meta-info {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 25px;
-            flex-wrap: wrap;
-        }
-        
-        .meta-tag {
-            padding: 6px 12px;
-            background: #1e293b;
-            border-radius: 20px;
-            font-size: 0.9rem;
-        }
-        
-        .ingredients-section, .instructions-section {
-            margin-bottom: 30px;
-        }
-        
-        .ingredients-list {
-            list-style: none;
-            margin-top: 15px;
-        }
-        
-        .ingredients-list li {
-            padding: 8px 0;
-            border-bottom: 1px solid #334155;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .instructions {
-            margin-top: 15px;
-            padding: 15px;
-            background: #1e293b;
-            border-radius: 8px;
-            line-height: 1.8;
-        }
-        
-        .loading {
-            text-align: center;
-            padding: 50px 0;
-        }
-        
-        .spinner {
-            border: 4px solid rgba(255, 255, 255, 0.3);
-            border-radius: 50%;
-            border-top: 4px solid #f8fafc;
-            width: 40px;
-            height: 40px;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 20px;
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .error-message {
-            text-align: center;
-            padding: 50px 20px;
-            color: #ef4444;
-        }
-    </style>
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/menu.css">
     <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/catalagoTeste.css">
+    <link rel="stylesheet" href="css/receita.css">
 </head>
+
 <body>
     <header class="main-header" id="main-header">
         <a href="index.html" class="logo">Santo<span>Gole</span></a>
-
         <nav class="desktop-nav">
-            <a href="index.html" class="active">Início</a>
-            <a href="/catalogo.html">Catálogo</a>
+            <a href="index.html">Início</a>
+            <a href="/catalogo.html" class="active">Catálogo</a>
             <a href="/roleta.html">Surpresa</a>
             <a href="/sobre.html">Sobre</a>
         </nav>
-        <div>
-        </div>
     </header>
 
-    <div class="container">
-        <a href="catalogo.html" class="back-btn">
+    <!-- HERO -->
+    <section class="hero" id="hero">
+        <div class="hero-flex">
+        <a href="catalogo.html" class="hero-btn">
             <i class="fas fa-arrow-left"></i>
             <span style="margin-left: 8px;">Voltar ao Catálogo</span>
         </a>
         
-        <div id="drink-detail">
-            <div class="loading">
-                <div class="spinner"></div>
-                <p>Carregando detalhes do drink...</p>
+            <div class="hero-text">
+                <div class="hero-content">
+                    <h1 id="drink-name">Carregando...</h1>
+                    <p id="drink-desc">Buscando informações do drink.</p>
+                </div>
+
+                <div id="drink-detail">
+                    <div class="loading">
+                        <div class="spinner"></div>
+                        <p>Carregando detalhes do drink...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-image-container">
+                <img id="drink-image" src="" alt="Imagem do Drink">
             </div>
         </div>
-    </div>
+    </section>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Obter o ID do drink da URL
+        document.addEventListener('DOMContentLoaded', function () {
             const urlParams = new URLSearchParams(window.location.search);
             const drinkId = urlParams.get('id');
-            
+
             if (!drinkId) {
                 showError('ID do drink não especificado na URL.');
                 return;
             }
-            
-            // Buscar detalhes do drink
+
             fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkId}`)
                 .then(response => {
-                    if (!response.ok) {
-                        throw new Error('Erro na resposta da API');
-                    }
+                    if (!response.ok) throw new Error('Erro na resposta da API');
                     return response.json();
                 })
                 .then(data => {
-                    if (!data.drinks || data.drinks.length === 0) {
-                        throw new Error('Drink não encontrado');
-                    }
-                    
+                    if (!data.drinks || data.drinks.length === 0) throw new Error('Drink não encontrado');
                     renderDrinkDetail(data.drinks[0]);
                 })
                 .catch(error => {
-                    console.error('Erro ao buscar detalhes do drink:', error);
+                    console.error(error);
                     showError('Não foi possível carregar os detalhes do drink. Por favor, tente novamente.');
                 });
-                
+
             function renderDrinkDetail(drink) {
-                // Extrair ingredientes e medidas
                 const ingredients = [];
                 for (let i = 1; i <= 15; i++) {
                     const ingredient = drink[`strIngredient${i}`];
                     const measure = drink[`strMeasure${i}`];
-                    
-                    if (ingredient && ingredient.trim() !== '') {
-                        ingredients.push({
-                            ingredient: ingredient,
-                            measure: measure || ''
-                        });
-                    }
+                    if (ingredient && ingredient.trim() !== '') ingredients.push({ ingredient, measure: measure || '' });
                 }
-                
-                // Construir HTML
+
+                // Atualiza a imagem e o texto da seção
+                const drinkImage = document.getElementById('drink-image');
+                drinkImage.src = drink.strDrinkThumb;
+                drinkImage.alt = drink.strDrink;
+
+                document.getElementById('drink-name').textContent = drink.strDrink;
+                document.getElementById('drink-desc').textContent = drink.strCategory || 'Drink especial';
+
+                // Detalhes da receita
                 const drinkDetailHTML = `
                     <div class="drink-detail">
-                        <div class="drink-image-container">
-                            <img src="${drink.strDrinkThumb}" alt="${drink.strDrink}" class="drink-image">
-                        </div>
                         <div class="drink-info">
-                            <h1>${drink.strDrink}</h1>
                             <div class="meta-info">
                                 <span class="meta-tag">${drink.strCategory || 'Unknown'}</span>
                                 <span class="meta-tag">${drink.strAlcoholic || 'Unknown'}</span>
                                 <span class="meta-tag">${drink.strGlass || 'Unknown'}</span>
                             </div>
-                            
+
                             <div class="ingredients-section">
                                 <h2>Ingredientes</h2>
                                 <ul class="ingredients-list">
@@ -232,14 +111,12 @@
                                     `).join('')}
                                 </ul>
                             </div>
-                            
+
                             <div class="instructions-section">
                                 <h2>Instruções</h2>
-                                <div class="instructions">
-                                    ${drink.strInstructions || 'Instruções não disponíveis.'}
-                                </div>
+                                <div class="instructions">${drink.strInstructions || 'Instruções não disponíveis.'}</div>
                             </div>
-                            
+
                             ${drink.strVideo ? `
                                 <div class="video-section">
                                     <h2>Vídeo</h2>
@@ -253,10 +130,9 @@
                         </div>
                     </div>
                 `;
-                
                 document.getElementById('drink-detail').innerHTML = drinkDetailHTML;
             }
-            
+
             function showError(message) {
                 document.getElementById('drink-detail').innerHTML = `
                     <div class="error-message">
@@ -268,5 +144,9 @@
             }
         });
     </script>
+
+    <script src="./js/menu.js"></script>
+    <script src="./js/footer.js"></script>
 </body>
+
 </html>
