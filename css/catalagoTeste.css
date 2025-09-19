@@ -269,9 +269,9 @@
 /* ======== Card de Drink ======== */
 .drink-card {
     background-color: #ffaf38;
+    border: 0.5px solid #855000;
     border-radius: 16px;
     overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     display: flex;
     flex-direction: column;
