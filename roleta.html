@@ -4,11 +4,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Surpresa</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/menu.css">
     <link rel="stylesheet" href="css/footer.css">
-    <link rel="stylesheet" href="css/busca.css">
     <link rel="stylesheet" href="css/roleta.css">
+
+
 </head>
 
 <body>
@@ -32,59 +37,60 @@
         </div>
     </section>
 
-    <div style="display: flex;">
+    <div class="container">
         <div class="drinkAleatorio">
-            <h2>Encontre o Drink Perfeito</h2>
+            <h1>Drink Aleatório</h1>
+
             <div class="search-container">
                 <button style="display: none;" class="search-btn" id="search-btn">
                     <i class="fas fa-search"></i> Buscar
                 </button>
-                <button class="random-btn" id="random-btn">
-                    <i class="fas fa-random"></i> Surpreenda-me
-                </button>
-            </div>
+               
+                    <button class="random-btn" id="random-btn">
+                        <i class="fas fa-random"></i> Surpreenda-me
+                    </button>
+              
 
-            <!-- Mensagens -->
-            <div class="message" id="loading-message">
-                <i class="fas fa-cocktail"></i>
-                <p>Buscando drinks...</p>
-            </div>
+                <!-- Mensagens -->
+                <div class="message" id="loading-message">
+                    <i class="fas fa-cocktail"></i>
+                    <p>Buscando drinks...</p>
+                </div>
 
-            <div class="message" id="error-message">
-                <i class="fas fa-exclamation-circle"></i>
-                <p>Nenhum drink encontrado. Tente outro termo.</p>
-            </div>
+                <div class="message" id="error-message">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>Nenhum drink encontrado. Tente outro termo.</p>
+                </div>
 
-            <!-- Resultados da Busca -->
-            <div class="results-grid" id="results-grid">
-                <!-- Os resultados serão inseridos aqui via JavaScript -->
-            </div>
-
-        </div>
-
-        <section class="circle-roulette">
-            <div class="roulette-wrapper">
-                <h2>Monte sua Roleta de Drinks</h2>
-
-                <div class="roulette-content">
-                    <!-- Lista de drinks -->
-                    <div class="drink-list-wrapper">
-                        <div class="add-drink">
-                            <input type="text" id="drink-input" placeholder="Digite o nome do drink">
-                            <button id="add-drink-btn">Adicionar</button>
-                        </div>
-                        <ul id="drink-list"></ul>
-                    </div>
-
-                    <!-- Canvas da roleta -->
-                    <div class="canvas-wrapper">
-                        <canvas id="roulette" width="400" height="400"></canvas>
-                        <button id="spin-btn">🎉 Girar a Roleta!</button>
-                        <p id="result"></p>
-                    </div>
+                <!-- Resultados da Busca -->
+                <div class="results-grid" id="results-grid">
+                    <!-- Os resultados serão inseridos aqui via JavaScript -->
                 </div>
             </div>
-        </section>
+        </div>
+
+        <div class="roulette-wrapper">
+            <h1>Monte sua Roleta de Drinks</h1>
+
+            <div class="roulette-content">
+                <!-- Lista de drinks -->
+                <div class="drink-list-wrapper">
+                    <div class="add-drink">
+                        <input type="text" id="drink-input" placeholder="Digite o nome do drink">
+                        <button id="add-drink-btn">Adicionar</button>
+                    </div>
+                    <ul id="drink-list"></ul>
+                </div>
+
+                <!-- Canvas da roleta -->
+                <div class="canvas-wrapper">
+                    <canvas id="roulette" width="400" height="400"></canvas>
+                    <button id="spin-btn">🎉 Girar a Roleta!</button>
+                    <p id="result"></p>
+                </div>
+            </div>
+        </div>
+
     </div>
     <div id="overlay-result">
         <p id="overlay-text"></p>
