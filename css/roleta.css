@@ -119,7 +119,7 @@
 
   h1 {
       color: #f59f1d;
-      margin-bottom: 2rem;
+      margin-bottom: 1rem;
   }
 
   .roulette-content {
@@ -144,46 +144,33 @@
 
   .add-drink {
       display: flex;
-      gap: 0.5rem;
-      margin-bottom: 1rem;
+      gap: 10px;
+      margin-bottom: 15px;
   }
 
-  .add-drink input {
-      padding: 0.5rem 1rem;
-      border-radius: 12px;
-      border: 2px solid #ffcc80;
-      flex: 1;
-      font-size: 1rem;
-  }
-
-  .add-drink button {
-      padding: 0.5rem 1rem;
-      border-radius: 12px;
-      border: none;
-      background-color: #ff6f00;
-      color: #fff;
-      cursor: pointer;
-      font-weight: 600;
-      transition: all 0.3s ease;
-  }
-
-  .add-drink button:hover {
-      background-color: #e65c00;
-  }
-
+  /* Estilos para a lista de drinks */
   #drink-list {
       list-style: none;
       padding: 0;
-      margin: 0;
+      margin-top: 15px;
+      max-height: 400px;
+      overflow-y: auto;
   }
 
   #drink-list li {
-      background-color: #ffcc80;
-      color: #333;
-      padding: 0.5rem 1rem;
-      margin-bottom: 0.5rem;
-      border-radius: 12px;
-      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 15px;
+      margin-bottom: 8px;
+      background: #f8f8f8;
+      border-radius: 5px;
+      border-left: 4px solid #ff6f00;
+      transition: all 0.2s ease;
+  }
+
+  #drink-list li:hover {
+      background: #f0f0f0;
   }
 
   /* Canvas e roleta */
@@ -269,6 +256,12 @@
       padding: 50px;
       background: linear-gradient(135deg, var(--dark-color) 0%, #0f172a 100%);
 
+  }
+
+  .container p {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      color: var(--text-light);
+      margin-bottom: 1rem;
   }
 
   .search-container {
@@ -501,4 +494,131 @@
   .view-recipe:hover {
       transform: translateY(-2px);
       box-shadow: var(--shadow-glow);
+  }
+
+
+
+
+  /*VER ISSO AQUI HOJE EM CASA SUS */
+
+  .drink-text {
+      flex-grow: 1;
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 3px;
+      transition: background 0.2s;
+  }
+
+  .drink-text:hover {
+      background: #e8e8e8;
+  }
+
+  .drink-text:focus {
+      outline: none;
+      background: white;
+      box-shadow: 0 0 0 2px #ff6f00;
+  }
+
+  .delete-btn {
+      background: #ff5252;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 30px;
+      height: 30px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s ease;
+  }
+
+  .delete-btn:hover {
+      background: #ff0000;
+      transform: scale(1.1);
+  }
+
+
+
+  #drink-input {
+      flex-grow: 1;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 16px;
+  }
+
+  #add-drink-btn {
+      background-color: #ff6f00;
+      color: white;
+      border: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background 0.2s;
+  }
+
+  #add-drink-btn:hover {
+      background-color: #e65c00;
+  }
+
+  /* Estilo para a mensagem fixa do resultado */
+  #fixed-result {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f8f9fa;
+      border-radius: 8px;
+      border-left: 4px solid #ff6f00;
+      text-align: center;
+      font-weight: 600;
+      font-size: 18px;
+      min-height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      opacity: 0;
+      visibility: hidden;
+  }
+
+  #fixed-result.show {
+      opacity: 1;
+      visibility: visible;
+  }
+
+  #fixed-result .drink-name {
+      color: #ff6f00;
+      font-weight: 700;
+  }
+
+  /* Estilo para o overlay (pop-up) */
+  #overlay-result {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.8);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1000;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+  }
+
+  #overlay-result.show {
+      opacity: 1;
+      visibility: visible;
+  }
+
+  #overlay-text {
+      color: white;
+      font-size: 2rem;
+      text-align: center;
+      background: #ff6f00;
+      padding: 2rem;
+      border-radius: 10px;
+      animation: popIn 0.5s ease-out;
   }

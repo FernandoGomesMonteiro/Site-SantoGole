@@ -13,7 +13,6 @@
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/roleta.css">
 
-
 </head>
 
 <body>
@@ -38,16 +37,15 @@
     <div class="container">
         <div class="drinkAleatorio">
             <h1>Drink Aleatório</h1>
-
+            <p>Não sabe o que pedir? Deixe a sorte escolher!</p>
             <div class="search-container">
                 <button style="display: none;" class="search-btn" id="search-btn">
                     <i class="fas fa-search"></i> Buscar
                 </button>
-               
-                    <button class="random-btn" id="random-btn">
-                        <i class="fas fa-random"></i> Surpreenda-me
-                    </button>
-              
+
+                <button class="random-btn" id="random-btn">
+                    <i class="fas fa-random"></i> Surpreenda-me
+                </button>
 
                 <!-- Mensagens -->
                 <div class="message" id="loading-message">
@@ -69,7 +67,7 @@
 
         <div class="roulette-wrapper">
             <h1>Monte sua Roleta de Drinks</h1>
-
+            <p>Monte sua lista de drinks e gire para descobrir o escolhido.</p>
             <div class="roulette-content">
                 <!-- Lista de drinks -->
                 <div class="drink-list-wrapper">
@@ -83,13 +81,19 @@
                 <!-- Canvas da roleta -->
                 <div class="canvas-wrapper">
                     <canvas id="roulette" width="400" height="400"></canvas>
-                    <button id="spin-btn">🎉 Girar a Roleta!</button>
-                    <p id="result"></p>
+                    <button id="spin-btn">Girar a Roleta!</button>
+
+                    <!-- Mensagem fixa do resultado -->
+                    <div id="fixed-result">
+                        <span id="fixed-result-text"></span>
+                    </div>
                 </div>
             </div>
         </div>
 
     </div>
+
+    <!-- Pop-up overlay -->
     <div id="overlay-result">
         <p id="overlay-text"></p>
     </div>
@@ -101,7 +105,8 @@
         const addDrinkBtn = document.getElementById('add-drink-btn');
         const drinkList = document.getElementById('drink-list');
         const spinBtn = document.getElementById('spin-btn');
-        const result = document.getElementById('result');
+        const fixedResult = document.getElementById('fixed-result');
+        const fixedResultText = document.getElementById('fixed-result-text');
 
         let drinks = [];
         let colors = ["#FFB74D", "#FF8A65", "#FF7043", "#FFA726", "#FF6F00", "#FFCC80", "#FFE0B2"];
@@ -114,16 +119,87 @@
 
         // Adicionar drink
         addDrinkBtn.addEventListener('click', () => {
+            addDrink();
+        });
+
+        // Permitir adicionar com Enter
+        drinkInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                addDrink();
+            }
+        });
+
+        function addDrink() {
             const drinkName = drinkInput.value.trim();
             if (drinkName && !drinks.includes(drinkName)) {
                 drinks.push(drinkName);
-                const li = document.createElement('li');
-                li.textContent = drinkName;
-                drinkList.appendChild(li);
+                createDrinkListItem(drinkName);
                 drinkInput.value = '';
                 drawRouletteWheel();
             }
-        });
+        }
+
+        // Criar item da lista com funcionalidades de edição e exclusão
+        function createDrinkListItem(drinkName) {
+            const li = document.createElement('li');
+
+            // Texto editável
+            const drinkText = document.createElement('span');
+            drinkText.className = 'drink-text';
+            drinkText.textContent = drinkName;
+            drinkText.setAttribute('contenteditable', 'true');
+
+            // Botão de exclusão
+            const deleteBtn = document.createElement('button');
+            deleteBtn.className = 'delete-btn';
+            deleteBtn.innerHTML = '<i class="fas fa-trash"></i>';
+
+            // Adicionar eventos
+            drinkText.addEventListener('blur', (e) => {
+                const newName = e.target.textContent.trim();
+                const index = drinks.indexOf(drinkName);
+
+                if (newName && newName !== drinkName) {
+                    // Verificar se o nome já existe
+                    if (drinks.includes(newName)) {
+                        alert('Este drink já está na lista!');
+                        e.target.textContent = drinkName;
+                        return;
+                    }
+
+                    // Atualizar o drink na lista
+                    drinks[index] = newName;
+                    drawRouletteWheel();
+                } else if (!newName) {
+                    // Se ficar vazio, restaurar o nome original
+                    e.target.textContent = drinkName;
+                }
+            });
+
+            drinkText.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    e.target.blur();
+                }
+            });
+
+            deleteBtn.addEventListener('click', () => {
+                const index = drinks.indexOf(drinkName);
+                if (index !== -1) {
+                    drinks.splice(index, 1);
+                    li.remove();
+                    drawRouletteWheel();
+
+                    // Esconder a mensagem fixa se não houver drinks
+                    if (drinks.length === 0) {
+                        fixedResult.classList.remove('show');
+                    }
+                }
+            });
+
+            li.appendChild(drinkText);
+            li.appendChild(deleteBtn);
+            drinkList.appendChild(li);
+        }
 
         // Desenhar roleta
         function drawRouletteWheel() {
@@ -196,30 +272,26 @@
             const degrees = startAngle * 180 / Math.PI + 90;
             const arcd = arc * 180 / Math.PI;
             const index = Math.floor((360 - degrees % 360) / arcd);
-            result.textContent = `🍹 O drink sorteado é: ${drinks[index]}!`;
-        }
-
-        drawRouletteWheel();
-        spinBtn.addEventListener('click', spin);
-
-        function stopRotateWheel() {
-            clearTimeout(spinTimeout);
-            const degrees = startAngle * 180 / Math.PI + 90;
-            const arcd = arc * 180 / Math.PI;
-            const index = Math.floor((360 - degrees % 360) / arcd);
             const drink = drinks[index];
 
-            // Mostrar overlay
+            // Mostrar mensagem fixa
+            fixedResultText.innerHTML = `🍹 O drink sorteado é: <span class="drink-name">${drink}</span>!`;
+            fixedResult.classList.add('show');
+
+            // Mostrar pop-up (overlay)
             const overlay = document.getElementById('overlay-result');
             const overlayText = document.getElementById('overlay-text');
             overlayText.textContent = `🍹 O drink sorteado é: ${drink}!`;
             overlay.classList.add('show');
 
-            // Esconder depois de 3 segundos
+            // Esconder pop-up depois de 3 segundos
             setTimeout(() => {
                 overlay.classList.remove('show');
             }, 3000);
         }
+
+        drawRouletteWheel();
+        spinBtn.addEventListener('click', spin);
     </script>
 
     <script src="js/menu.js"></script>
