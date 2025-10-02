@@ -140,6 +140,7 @@
         }
 
         // Criar item da lista com funcionalidades de edição e exclusão
+        // Criar item da lista com funcionalidades de edição e exclusão
         function createDrinkListItem(drinkName) {
             const li = document.createElement('li');
 
@@ -169,6 +170,8 @@
 
                     // Atualizar o drink na lista
                     drinks[index] = newName;
+                    // Atualizar a variável drinkName para refletir a mudança
+                    drinkName = newName;
                     drawRouletteWheel();
                 } else if (!newName) {
                     // Se ficar vazio, restaurar o nome original

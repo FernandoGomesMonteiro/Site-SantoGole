@@ -58,13 +58,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 const drinkCard = document.createElement('div');
                 drinkCard.className = 'drink-card';
                 drinkCard.innerHTML = `
-                    <img src="${drink.image}" alt="${drink.name}" class="drink-image">
-                    <div class="drink-content">
-                        <h3>${drink.name}</h3>
-                        <p>${drink.description}</p>
-                        <button class="ver-receita">Ver Receita</button>
-                    </div>`;
+                <img src="${drink.image}" alt="${drink.name}" class="drink-image">
+                <div class="drink-content">
+                    <h3>${drink.name}</h3>
+                    <p>${drink.description}</p>
+                    <button class="ver-receita">Ver Receita</button>
+                </div>`;
+
+                // Adiciona o event listener diretamente aqui
                 drinkCard.querySelector('.ver-receita').addEventListener('click', () => showModal(drink));
+
                 carouselTrack.appendChild(drinkCard);
             });
         }
@@ -135,33 +138,92 @@ document.addEventListener('DOMContentLoaded', () => {
         window.addEventListener('resize', updateCarouselUI);
     }
 
+    // Remove a função setupModal completamente e use este código:
+
     function showModal(drink) {
+        const modalContainer = document.getElementById('recipe-modal-container');
         const modalBody = document.getElementById('modal-body');
+
         modalBody.innerHTML = `
-            <h3>${drink.name}</h3>
-            <h4>Ingredientes:</h4>
-            <ul>${drink.ingredients.map(ing => `<li>${ing}</li>`).join('')}</ul>
-            <h4>Modo de Preparo:</h4>
-            <ol>${drink.instructions.map(step => `<li>${step}</li>`).join('')}</ol>`;
-        document.getElementById('recipe-modal-container').classList.add('show');
+        <h2>${drink.name}</h2>
+        <h3>Ingredientes:</h3>
+        <ul>${drink.ingredients.map(ing => `<li>${ing}</li>`).join('')}</ul>
+        <h3>Modo de Preparo:</h3>
+        <ol>${drink.instructions.map(step => `<li>${step}</li>`).join('')}</ol>`;
+
+        // Mostrar modal
+        modalContainer.classList.add('show');
+        modalContainer.style.visibility = 'visible';
+        modalContainer.style.opacity = '1';
+        modalContainer.style.pointerEvents = 'auto';
         document.body.style.overflow = 'hidden';
     }
 
-    function setupModal() {
+    // Configurar fechamento UMA VEZ (não precisa recriar)
+    document.addEventListener('DOMContentLoaded', () => {
         const modalContainer = document.getElementById('recipe-modal-container');
         const closeModalBtn = document.getElementById('close-modal-btn');
 
         const closeModal = () => {
             modalContainer.classList.remove('show');
+            modalContainer.style.visibility = 'hidden';
+            modalContainer.style.opacity = '0';
+            modalContainer.style.pointerEvents = 'none';
             document.body.style.overflow = '';
         };
 
+        // Event listeners que funcionam sempre
         closeModalBtn.addEventListener('click', closeModal);
+
         modalContainer.addEventListener('click', (e) => {
             if (e.target === modalContainer) closeModal();
         });
+
         document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modalContainer.classList.contains('show')) closeModal();
+            if (e.key === 'Escape' && modalContainer.classList.contains('show')) {
+                closeModal();
+            }
+        });
+
+        // O resto do seu código (drinks array, renderDrinks, etc)...
+    });
+
+    function setupModal() {
+        const modalContainer = document.getElementById('recipe-modal-container');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+
+        console.log('🔧 SetupModal executado');
+        console.log('Modal container:', modalContainer);
+        console.log('Close button:', closeModalBtn);
+
+        const closeModal = () => {
+            console.log('🔒 Fechando modal...');
+            modalContainer.classList.remove('show');
+            modalContainer.style.visibility = 'hidden';
+            modalContainer.style.opacity = '0';
+            modalContainer.style.pointerEvents = 'none';
+            document.body.style.overflow = '';
+        };
+
+        // Evento do botão fechar
+        closeModalBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            closeModal();
+        });
+
+        // Evento de clique fora do modal
+        modalContainer.addEventListener('click', (e) => {
+            if (e.target === modalContainer) {
+                closeModal();
+            }
+        });
+
+        // Evento da tecla Escape
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modalContainer.classList.contains('show')) {
+                closeModal();
+            }
         });
     }
 

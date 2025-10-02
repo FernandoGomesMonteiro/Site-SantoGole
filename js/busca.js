@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
     // Função para buscar drinks
     async function searchDrinks() {
         const searchTerm = searchInput.value.trim();
-        
+
         if (searchTerm === '') {
             alert('Por favor, digite o nome de um drink');
             return;
@@ -50,9 +50,9 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${searchTerm}`);
             const data = await response.json();
-            
+
             hideLoading();
-            
+
             if (data.drinks) {
                 displayDrinks(data.drinks);
             } else {
@@ -73,9 +73,9 @@ document.addEventListener('DOMContentLoaded', () => {
         try {
             const response = await fetch('https://www.thecocktaildb.com/api/json/v1/1/random.php');
             const data = await response.json();
-            
+
             hideLoading();
-            
+
             if (data.drinks) {
                 displayDrinks(data.drinks);
             } else {
@@ -91,23 +91,26 @@ document.addEventListener('DOMContentLoaded', () => {
     // Função para exibir drinks na grade
     function displayDrinks(drinks) {
         resultsGrid.innerHTML = '';
-        
+
         drinks.forEach(drink => {
             const drinkCard = document.createElement('div');
             drinkCard.className = 'result-card';
-            
+
             drinkCard.innerHTML = `
-                <img src="${drink.strDrinkThumb}" alt="${drink.strDrink}" class="result-image">
-                <div class="result-content">
-                    <h3>${drink.strDrink}</h3>
-                    <p>${drink.strCategory}</p>
-                    <button class="view-recipe" data-id="${drink.idDrink}">Ver Receita</button>
-                </div>
-            `;
-            
+            <img src="${drink.strDrinkThumb}" alt="${drink.strDrink}" class="result-image">
+            <div class="result-content">
+                <h3>${drink.strDrink}</h3>
+                <p>${drink.strCategory}</p>
+                <!-- ALTERAÇÃO AQUI: Link para detalhes.html em vez de modal -->
+                <a href="detalhes.html?id=${drink.idDrink}" class="view-recipe">
+                    Ver Receita
+                </a>
+            </div>
+        `;
+
             resultsGrid.appendChild(drinkCard);
         });
-        
+
         // Adicionar event listeners aos botões
         document.querySelectorAll('.view-recipe').forEach(button => {
             button.addEventListener('click', (e) => {
@@ -120,13 +123,13 @@ document.addEventListener('DOMContentLoaded', () => {
     // Função para obter detalhes de um drink específico
     async function getDrinkDetails(drinkId) {
         showLoading();
-        
+
         try {
             const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${drinkId}`);
             const data = await response.json();
-            
+
             hideLoading();
-            
+
             if (data.drinks) {
                 showDrinkDetails(data.drinks[0]);
             }
@@ -143,23 +146,23 @@ document.addEventListener('DOMContentLoaded', () => {
         modalCategory.textContent = `Categoria: ${drink.strCategory}`;
         modalGlass.textContent = `Copo: ${drink.strGlass}`;
         modalAlcoholic.textContent = `Tipo: ${drink.strAlcoholic}`;
-        
+
         // Ingredientes e medidas
         modalIngredients.innerHTML = '';
         for (let i = 1; i <= 15; i++) {
             const ingredient = drink[`strIngredient${i}`];
             const measure = drink[`strMeasure${i}`];
-            
+
             if (ingredient && ingredient.trim() !== '') {
                 const li = document.createElement('li');
                 li.textContent = `${measure ? measure : ''} ${ingredient}`;
                 modalIngredients.appendChild(li);
             }
         }
-        
+
         // Instruções
         modalInstructions.textContent = drink.strInstructions;
-        
+
         // Exibir modal
         drinkModal.style.display = 'block';
     }
