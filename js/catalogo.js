@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     // Elementos do DOM
     const drinksContainer = document.getElementById('drinks-container');
     const loadingSpinner = document.getElementById('loading-spinner');
@@ -9,21 +9,22 @@ document.addEventListener('DOMContentLoaded', function() {
     const prevPageBtn = document.getElementById('prev-page');
     const nextPageBtn = document.getElementById('next-page');
     const pageInfo = document.getElementById('page-info');
-    
+    const sophisticatedText = document.querySelector('.sophisticated-text');
+
     // Variáveis de estado
     let allDrinks = [];
     let filteredDrinks = [];
     let currentPage = 1;
     const drinksPerPage = 12;
-    
+
     // Inicializar a aplicação
     init();
-    
+
     function init() {
         fetchDrinks();
         setupEventListeners();
     }
-    
+
     function setupEventListeners() {
         categoryFilter.addEventListener('change', filterDrinks);
         sortBy.addEventListener('change', filterDrinks);
@@ -31,29 +32,29 @@ document.addEventListener('DOMContentLoaded', function() {
         prevPageBtn.addEventListener('click', goToPrevPage);
         nextPageBtn.addEventListener('click', goToNextPage);
     }
-    
+
     // Função para buscar drinks da API
     async function fetchDrinks() {
         showLoading(true);
-        
+
         try {
             // Buscar drinks por primeira letra (A-Z)
             const letters = 'abcdefghijklmnopqrstuvwxyz'.split('');
-            const promises = letters.map(letter => 
+            const promises = letters.map(letter =>
                 fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?f=${letter}`)
                     .then(response => response.json())
             );
-            
+
             const results = await Promise.all(promises);
-            
+
             // Combinar todos os resultados
             allDrinks = results
                 .filter(result => result.drinks)
                 .flatMap(result => result.drinks)
-                .filter((drink, index, self) => 
+                .filter((drink, index, self) =>
                     index === self.findIndex(d => d.idDrink === drink.idDrink)
                 );
-            
+
             showLoading(false);
             filterDrinks();
         } catch (error) {
@@ -68,22 +69,22 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
         }
     }
-    
+
     // Função para filtrar e ordenar drinks
     function filterDrinks() {
         const categoryValue = categoryFilter.value;
         const sortValue = sortBy.value;
         const searchValue = searchInput.value.toLowerCase();
-        
+
         // Aplicar filtros
         filteredDrinks = allDrinks.filter(drink => {
             const matchesCategory = categoryValue === 'all' || drink.strCategory === categoryValue;
             const matchesSearch = drink.strDrink.toLowerCase().includes(searchValue);
             return matchesCategory && matchesSearch;
         });
-        
+
         // Aplicar ordenação
-        switch(sortValue) {
+        switch (sortValue) {
             case 'name-asc':
                 filteredDrinks.sort((a, b) => a.strDrink.localeCompare(b.strDrink));
                 break;
@@ -94,22 +95,22 @@ document.addEventListener('DOMContentLoaded', function() {
                 filteredDrinks.sort((a, b) => a.strCategory.localeCompare(b.strCategory));
                 break;
         }
-        
+
         // Atualizar contador de resultados
         totalResults.textContent = filteredDrinks.length;
-        
+
         // Resetar para a primeira página
         currentPage = 1;
         renderDrinks();
         updatePagination();
     }
-    
+
     // Função para renderizar os drinks na página atual
     function renderDrinks() {
         const startIndex = (currentPage - 1) * drinksPerPage;
         const endIndex = startIndex + drinksPerPage;
         const currentDrinks = filteredDrinks.slice(startIndex, endIndex);
-        
+
         if (currentDrinks.length === 0) {
             drinksContainer.innerHTML = `
                 <div class="no-results">
@@ -120,7 +121,7 @@ document.addEventListener('DOMContentLoaded', function() {
             `;
             return;
         }
-        
+
         // ***** ALTERAÇÃO APLICADA AQUI *****
         // Agora a tag <a> envolve todo o card do drink.
         drinksContainer.innerHTML = currentDrinks.map(drink => `
@@ -139,43 +140,48 @@ document.addEventListener('DOMContentLoaded', function() {
             </a>
         `).join('');
     }
-    
+
     // Função para atualizar a paginação
     function updatePagination() {
         const totalPages = Math.ceil(filteredDrinks.length / drinksPerPage);
-        
+
         pageInfo.textContent = `Página ${currentPage} de ${totalPages}`;
         prevPageBtn.disabled = currentPage === 1;
         nextPageBtn.disabled = currentPage === totalPages || totalPages === 0;
     }
-    
+
     // Função para ir para a página anterior
     function goToPrevPage() {
         if (currentPage > 1) {
             currentPage--;
             renderDrinks();
             updatePagination();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            // calcula a posição do topo da div + scroll atual
+            const y = sophisticatedText.getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({ top: y, behavior: 'smooth' });
         }
     }
-    
+
     // Função para ir para a próxima página
     function goToNextPage() {
         const totalPages = Math.ceil(filteredDrinks.length / drinksPerPage);
-        
+
         if (currentPage < totalPages) {
             currentPage++;
             renderDrinks();
             updatePagination();
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            const y = sophisticatedText.getBoundingClientRect().top + window.scrollY;
+            window.scrollTo({ top: y, behavior: 'smooth' });
         }
     }
-    
+
     // Função para mostrar/ocultar o loading
     function showLoading(show) {
         loadingSpinner.style.display = show ? 'block' : 'none';
     }
-    
+
     // Função debounce para melhorar performance na busca
     function debounce(func, wait) {
         let timeout;
