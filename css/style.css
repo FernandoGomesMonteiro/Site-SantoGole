@@ -565,25 +565,7 @@ h4 {
     transform: scale(1.05);
 }
 
-.sophisticated-section {
-    padding: 10rem 5%;
-    background: linear-gradient(135deg, var(--dark-color) 0%, #0f172a 100%);
-    color: var(--text-light);
-    position: relative;
-    overflow: hidden;
-}
 
-
-.sophisticated-content {
-    max-width: 1400px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6rem;
-    align-items: center;
-    position: relative;
-    z-index: 2;
-}
 
 .sophisticated-text {
     padding: 3rem;
@@ -608,71 +590,6 @@ h4 {
     color: rgba(241, 245, 249, 0.8);
     font-weight: 300;
 }
-
-.signature {
-    font-style: italic;
-    color: var(--accent-color);
-    font-weight: 600;
-    margin-top: 3rem;
-    font-size: 1.2rem;
-    position: relative;
-    padding-left: 2rem;
-}
-
-.signature::before {
-    content: '';
-    position: absolute;
-    left: 0;
-    top: 50%;
-    width: 1.5rem;
-    height: 2px;
-    background: var(--gradient-primary);
-    transform: translateY(-50%);
-}
-
-.sophisticated-image {
-    position: relative;
-    border-radius: 30px;
-    overflow: hidden;
-    box-shadow: var(--shadow-large);
-    transition: all 0.5s ease;
-}
-
-.sophisticated-image::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--gradient-glass);
-    opacity: 0;
-    transition: opacity 0.4s ease;
-    z-index: 2;
-    pointer-events: none;
-}
-
-.sophisticated-image:hover::before {
-    opacity: 0.3;
-}
-
-.sophisticated-image img {
-    width: 100%;
-    height: 500px;
-    object-fit: cover;
-    transition: transform 0.5s ease;
-}
-
-.sophisticated-image:hover {
-    transform: translateY(-10px);
-    box-shadow: var(--shadow-large), var(--shadow-glow);
-}
-
-.sophisticated-image:hover img {
-    transform: scale(1.1);
-}
-
-
 
 .back-to-top {
     position: fixed;
@@ -923,21 +840,8 @@ h4 {
         font-size: 1.2rem;
     }
 
-    .sophisticated-content {
-        flex-direction: column;
-        text-align: center;
-        padding: 2rem;
-        gap: 2rem;
-    }
-
     .sophisticated-text {
         order: 2;
-    }
-
-    .sophisticated-image {
-        order: 1;
-        width: 100%;
-        max-width: 400px;
     }
 
     .sophisticated-text h2::before {
@@ -993,8 +897,7 @@ h4 {
     }
 
     .filter-section,
-    .carousel-section,
-    .sophisticated-section,
+    .carousel-section,sophisticated-text
     .footer {
         padding-left: 3%;
         padding-right: 3%;
@@ -1034,10 +937,6 @@ h4 {
     .filter-btn {
         width: 100%;
         justify-content: center;
-    }
-
-    .sophisticated-content {
-        padding: 1.5rem;
     }
 
     .modal-content {
