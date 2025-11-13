@@ -12,7 +12,8 @@
     <link rel="stylesheet" href="css/menu.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/roleta.css">
-
+    <link rel="stylesheet" href="css/acessibilidade_fontes.css">
+    <link rel="stylesheet" href="css/acessibilidade_cores.css">
 </head>
 
 <body>
@@ -24,6 +25,11 @@
             <a href="/roleta.html" class="active">Surpresa</a>
             <a href="/sobre.html">Sobre</a>
         </nav>
+        <div class="accessibility-widget" id="accessibility-widget" aria-label="Controles de acessibilidade">
+            <button id="increase-text" aria-label="Aumentar tamanho do texto">A+</button>
+            <button id="decrease-text" aria-label="Diminuir tamanho do texto">A−</button>
+            <button id="toggle-theme">🌙</button>
+        </div>
     </header>
 
     <section class="hero">
@@ -34,7 +40,7 @@
         </div>
     </section>
 
-    <div class="container">
+    <main>
         <div class="drinkAleatorio">
             <h1>Drink Aleatório</h1>
             <p>Não sabe o que pedir? Deixe a sorte escolher!</p>
@@ -91,7 +97,7 @@
             </div>
         </div>
 
-    </div>
+    </main>
 
     <!-- Pop-up overlay -->
     <div id="overlay-result">
@@ -297,6 +303,9 @@
         spinBtn.addEventListener('click', spin);
     </script>
 
+
+    <script src="js/acess_cores.js"></script>
+    <script src="js/acess_fontes.js"></script>
     <script src="js/menu.js"></script>
     <script src="js/footer.js"></script>
     <script src="js/busca.js"></script>

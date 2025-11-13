@@ -106,14 +106,14 @@
 .mission-text h1 {
   color: #ffb347;
   margin-bottom: 15px;
-  font-size: 45px;
+  font-size: 3rem;
 }
 
 .mission-text p {
   margin-bottom: 12px;
   line-height: 1.6;
   color: rgba(241, 245, 249, 0.8);
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 .mission-image img {

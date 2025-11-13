@@ -110,7 +110,7 @@
 }
 
 /* ===== CONTAINER PRINCIPAL ===== */
-.container {
+main {
     display: flex;
     justify-content: center;
     gap: 60px;
@@ -118,7 +118,7 @@
     background: linear-gradient(135deg, var(--dark-color) 0%, #0f172a 100%);
 }
 
-.container p {
+main p {
     font-size: clamp(1rem, 2.5vw, 1.3rem);
     color: rgba(255, 255, 255, 0.8);
     margin-bottom: 2rem;

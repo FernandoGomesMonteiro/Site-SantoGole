@@ -35,7 +35,7 @@ html {
 }
 
 body {
-    background: linear-gradient(135deg, var(--dark-color) 0%, #1e293b 100%);
+    background: linear-gradient(135deg, var(--dark-color) 0%,  #1e293b 100%);
     font-family: 'Inter', sans-serif;
 }
 

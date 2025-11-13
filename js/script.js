@@ -43,6 +43,34 @@ document.addEventListener('DOMContentLoaded', () => {
     let filteredDrinks = [...drinks];
     let scrollTimeout;
 
+    const modal = document.getElementById("age-modal");
+    const yesBtn = document.getElementById("age-yes");
+    const noBtn = document.getElementById("age-no");
+
+    const ageConfirmed = localStorage.getItem("ageConfirmed");
+
+    if (ageConfirmed === "true") {
+        modal.style.display = "none";
+    } else {
+        modal.style.display = "flex";
+    }
+
+    yesBtn.addEventListener("click", () => {
+        localStorage.setItem("ageConfirmed", "true");
+
+        // Adiciona a classe de saída
+        modal.classList.add("fadeOut");
+
+        // Espera a animação terminar para esconder o modal
+        setTimeout(() => {
+            modal.style.display = "none";
+        }, 400); // mesmo tempo da animação (0.4s)
+    });
+
+    noBtn.addEventListener("click", () => {
+        alert("O conteúdo deste site é permitido apenas para maiores de 18 anos.");
+    });
+
     function renderDrinks() {
         carouselTrack.innerHTML = '';
         if (filteredDrinks.length === 0) {
@@ -226,6 +254,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     }
+
+
+
 
     renderDrinks();
     setupFilters();

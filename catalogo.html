@@ -16,11 +16,13 @@
     <title>Catálogo de Drinks - SantoGole</title>
     <link rel="canonical" href="https://santogole.com/catalogo.html">
 
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;900&display=swap" rel="stylesheet">
 
+    <link rel="stylesheet" href="css/acessibilidade_cores.css">
+    <link rel="stylesheet" href="css/acessibilidade_fontes.css">
     <link rel="stylesheet" href="css/menu.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/catalogo.css">
@@ -36,6 +38,11 @@
             <a href="/roleta.html">Surpresa</a>
             <a href="/sobre.html">Sobre</a>
         </nav>
+        <div class="accessibility-widget" id="accessibility-widget" aria-label="Controles de acessibilidade">
+            <button id="increase-text" aria-label="Aumentar tamanho do texto">A+</button>
+            <button id="decrease-text" aria-label="Diminuir tamanho do texto">A−</button>
+            <button id="toggle-theme">🌙</button>
+        </div>
     </header>
 
 
@@ -111,6 +118,8 @@
         </div>
     </main>
 
+    <script src="js/acess_cores.js"></script>
+    <script src="js/acess_fontes.js"></script>
     <script src="js/catalogo.js"></script>
     <script src="js/menu.js"></script>
     <script src="js/footer.js"></script>

@@ -1,0 +1,65 @@
+:root {
+    --bg-color: #ffffff;
+    --text-color: #222;
+    --modal-bg: #ffffff;
+    --modal-text: #000000;
+    --button-bg: #27ae60;
+    --button-text: #ffffff;
+}
+
+/* 🌙 Tema Escuro */
+.dark-mode {
+    --bg-color: #1e293b;
+    --text-color: #f0f0f0;
+    --modal-bg: #2c2c2c;
+    --modal-text: #ffffff;
+    --button-bg: #2ecc71;
+    --button-text: #ffffff;
+}
+
+/* Aplicação das variáveis */
+.filter-section {
+    background: linear-gradient(135deg, var(--bg-color) 0%, #1e293b 100%);
+    color: var(--text-color);
+    transition: background 0.4s, color 0.4s;
+}
+
+main {
+    background: linear-gradient(135deg, var(--bg-color) 0%, #1e293b 100%);
+    color: var(--text-color);
+    transition: background 0.4s, color 0.4s;
+}
+
+.age-modal {
+    background-color: var(--modal-bg);
+    color: var(--modal-text);
+    transition: background 0.4s, color 0.4s;
+}
+
+.age-modal-buttons button {
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    transition: background 0.4s, transform 0.3s, box-shadow 0.3s;
+}
+
+/* Botão do modo */
+.theme-toggle {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+}
+
+.theme-toggle button {
+    background: transparent;
+    color: var(--text-color);
+    border: 1px solid var(--text-color);
+    padding: 6px 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle button:hover {
+    background: var(--text-color);
+    color: var(--bg-color);
+}
