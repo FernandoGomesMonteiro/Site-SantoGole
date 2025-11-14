@@ -79,16 +79,8 @@
             console.error('❌ Botão toggle-theme não encontrado no DOM!');
         }
 
-        // Tecla "T" para alternar tema
-        document.addEventListener('keydown', (e) => {
-            if ((e.key === 't' || e.key === 'T') && !e.ctrlKey && !e.metaKey) {
-                e.preventDefault();
-                toggleTheme();
-            }
-        });
 
-        console.log('🎯 Theme manager pronto! Pressione "T" para alternar temas');
-    }
+            }
 
     // Iniciar
     if (document.readyState === 'loading') {

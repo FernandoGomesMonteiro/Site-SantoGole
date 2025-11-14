@@ -185,4 +185,20 @@ document.addEventListener('DOMContentLoaded', () => {
     function hideError() {
         errorMessage.style.display = 'none';
     }
+
+    // Função utilitária para buscar drinks pela API e retornar o array de objetos
+    async function fetchDrinks(term) {
+        if (!term || term.trim() === '') return [];
+        try {
+            const response = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${encodeURIComponent(term)}`);
+            const data = await response.json();
+            return data.drinks || [];
+        } catch (error) {
+            console.error('Erro na fetchDrinks:', error);
+            throw error;
+        }
+    }
+
+    // Expor a função globalmente para outras páginas/scripts (por exemplo, roleta.html)
+    window.fetchDrinks = fetchDrinks;
 });

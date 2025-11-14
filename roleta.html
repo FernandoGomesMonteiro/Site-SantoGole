@@ -14,6 +14,65 @@
     <link rel="stylesheet" href="css/roleta.css">
     <link rel="stylesheet" href="css/acessibilidade_fontes.css">
     <link rel="stylesheet" href="css/acessibilidade_cores.css">
+
+    <!-- Adicionei estilos mínimos para a lista de sugestões -->
+    <style>
+        /* --- Minimal, dark-mode aware styles to complement css/roleta.css and acessibilidade_cores.css --- */
+        :root { color-scheme: dark; }
+        .search-container { display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin-bottom:18px; }
+        .search-container .random-btn { min-width:220px; }
+
+        .suggestions-wrapper { position:relative; display:flex; gap:8px; align-items:center; width:100%; max-width:420px; }
+        #drink-input {
+            flex:1;
+            padding:10px 12px;
+            border-radius:10px;
+            border:1px solid rgba(255,111,0,0.12);
+            background: var(--card-bg);
+            color: var(--text-light);
+            font-size:14px;
+        }
+        #drink-input:focus { box-shadow:0 0 0 4px rgba(255,111,0,0.08); border-color: #ff6f00; outline: none; }
+
+        .suggestions-wrapper #search-btn {
+            background: transparent;
+            border: 1px solid rgba(255,111,0,0.12);
+            color: var(--text-light);
+            padding:8px 10px;
+            border-radius:8px;
+            cursor:pointer;
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+        }
+        .suggestions-wrapper #search-btn:hover { background: rgba(255,111,0,0.06); }
+
+        /* Suggestions list styled for dark theme */
+        #suggestions {
+            position:absolute;
+            top:48px;
+            left:0;
+            right:0;
+            background: var(--card-bg);
+            border: 1px solid rgba(255,111,0,0.08);
+            border-radius:8px;
+            max-height:260px;
+            overflow:auto;
+            z-index:60;
+            padding:6px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+        }
+        #suggestions.hidden { display:none; }
+        #suggestions li { display:flex; gap:10px; align-items:center; padding:8px; border-radius:6px; color:var(--text-light); cursor:pointer; }
+        #suggestions li:hover { background: rgba(255,255,255,0.02); }
+        #suggestions img { width:44px; height:44px; object-fit:cover; border-radius:6px; }
+        #suggestions .name { font-size:14px; color:var(--text-light); }
+
+        /* Keep overlay and messages consistent with global theme */
+        .message { color: var(--text-light); }
+        .results-grid { gap:12px; margin-top:12px; }
+        @media (max-width:900px) { .suggestions-wrapper { max-width:100%; } }
+    </style>
 </head>
 
 <body>
@@ -45,13 +104,9 @@
             <h1>Drink Aleatório</h1>
             <p>Não sabe o que pedir? Deixe a sorte escolher!</p>
             <div class="search-container">
-                <button style="display: none;" class="search-btn" id="search-btn">
-                    <i class="fas fa-search"></i> Buscar
-                </button>
-
-                <button class="random-btn" id="random-btn">
-                    <i class="fas fa-random"></i> Surpreenda-me
-                </button>
+                 <button class="random-btn" id="random-btn">
+                     <i class="fas fa-random"></i> Surpreenda-me
+                 </button>
 
                 <!-- Mensagens -->
                 <div class="message" id="loading-message">
@@ -78,11 +133,15 @@
                 <!-- Lista de drinks -->
                 <div class="drink-list-wrapper">
                     <div class="add-drink">
-                        <input type="text" id="drink-input" placeholder="Digite o nome do drink">
-                        <button id="add-drink-btn">Adicionar</button>
-                    </div>
-                    <ul id="drink-list"></ul>
-                </div>
+                        <!-- input + adicionar juntos; search-btn removido -->
+                        <div class="suggestions-wrapper">
+                            <input type="text" id="drink-input" placeholder="Digite o nome do drink" autocomplete="off" aria-label="Nome do drink">
+                            <button id="add-drink-btn">Adicionar</button>
+                            <ul id="suggestions" class="hidden" role="listbox" aria-label="Sugestões de drinks"></ul>
+                        </div>
+                     </div>
+                     <ul id="drink-list"></ul>
+                 </div>
 
                 <!-- Canvas da roleta -->
                 <div class="canvas-wrapper">
@@ -104,6 +163,9 @@
         <p id="overlay-text"></p>
     </div>
 
+    <!-- Elemento oculto para compatibilidade com scripts que usam #search-btn -->
+    <button id="search-btn" type="button" style="display:none" aria-hidden="true"></button>
+
     <script>
         const canvas = document.getElementById('roulette');
         const ctx = canvas.getContext('2d');
@@ -113,6 +175,8 @@
         const spinBtn = document.getElementById('spin-btn');
         const fixedResult = document.getElementById('fixed-result');
         const fixedResultText = document.getElementById('fixed-result-text');
+
+        const suggestionsEl = document.getElementById('suggestions');
 
         let drinks = [];
         let colors = ["#FFB74D", "#FF8A65", "#FF7043", "#FFA726", "#FF6F00", "#FFCC80", "#FFE0B2"];
@@ -128,10 +192,17 @@
             addDrink();
         });
 
-        // Permitir adicionar com Enter
+        // Permitir adicionar com Enter (quando não estiver escolhendo sugestão)
         drinkInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
-                addDrink();
+                e.preventDefault();
+                // Se houver uma sugestão visível selecionada, use-a; senão adiciona o texto
+                const firstSuggestion = suggestionsEl.querySelector('li');
+                if (firstSuggestion && !suggestionsEl.classList.contains('hidden')) {
+                    selectSuggestion(firstSuggestion.dataset.name);
+                } else {
+                    addDrink();
+                }
             }
         });
 
@@ -141,6 +212,7 @@
                 drinks.push(drinkName);
                 createDrinkListItem(drinkName);
                 drinkInput.value = '';
+                hideSuggestions();
                 drawRouletteWheel();
             }
         }
@@ -301,8 +373,143 @@
 
         drawRouletteWheel();
         spinBtn.addEventListener('click', spin);
-    </script>
 
+        // --- Nova lógica: buscar sugestões enquanto digita e permitir seleção ---
+        // debounce helper
+        function debounce(fn, delay = 300) {
+            let t;
+            return (...args) => {
+                clearTimeout(t);
+                t = setTimeout(() => fn(...args), delay);
+            };
+        }
+
+        async function fetchSuggestions(term) {
+            if (!term || term.trim().length < 2) {
+                hideSuggestions();
+                return;
+            }
+            // mostrar loading no elemento de busca geral (reaproveita)
+            const loadingMessage = document.getElementById('loading-message');
+            const errorMessage = document.getElementById('error-message');
+            if (loadingMessage) loadingMessage.style.display = 'block';
+            if (errorMessage) errorMessage.style.display = 'none';
+
+            try {
+                if (typeof window.fetchDrinks === 'function') {
+                    const results = await window.fetchDrinks(term);
+                    if (results && results.length > 0) {
+                        populateSuggestions(results);
+                    } else {
+                        hideSuggestions();
+                    }
+                } else {
+                    // fallback: tenta chamar API diretamente (TheCocktailDB) se fetchDrinks não existir
+                    const res = await fetch(`https://www.thecocktaildb.com/api/json/v1/1/search.php?s=${encodeURIComponent(term)}`);
+                    const json = await res.json();
+                    if (json && json.drinks) {
+                        populateSuggestions(json.drinks);
+                    } else {
+                        hideSuggestions();
+                    }
+                }
+            } catch (err) {
+                console.error('Erro ao buscar sugestões:', err);
+                hideSuggestions();
+                if (errorMessage) errorMessage.style.display = 'block';
+            } finally {
+                if (loadingMessage) loadingMessage.style.display = 'none';
+            }
+        }
+
+        function populateSuggestions(results) {
+            suggestionsEl.innerHTML = '';
+            results.forEach(drinkObj => {
+                const name = drinkObj.strDrink;
+                const thumb = drinkObj.strDrinkThumb || '';
+                const li = document.createElement('li');
+                li.dataset.name = name;
+                li.innerHTML = `
+                    ${thumb ? `<img src="${thumb}" alt="${name}">` : ''}
+                    <span class="name">${name}</span>
+                `;
+                li.addEventListener('click', () => {
+                    selectSuggestion(name);
+                });
+                suggestionsEl.appendChild(li);
+            });
+            suggestionsEl.classList.remove('hidden');
+        }
+
+        function hideSuggestions() {
+            suggestionsEl.classList.add('hidden');
+            suggestionsEl.innerHTML = '';
+        }
+
+        function selectSuggestion(name) {
+            // preenche input e adiciona diretamente à roleta
+            drinkInput.value = name;
+            addDrink();
+            hideSuggestions();
+            drinkInput.focus();
+        }
+
+        // Debounced input listener
+        const debouncedFetch = debounce((e) => {
+            const term = e.target.value;
+            fetchSuggestions(term);
+        }, 350);
+
+        drinkInput.addEventListener('input', debouncedFetch);
+
+        // clicar fora fecha as sugestões
+        document.addEventListener('click', (e) => {
+            if (!e.target.closest('.suggestions-wrapper')) {
+                hideSuggestions();
+            }
+        });
+
+        // Tornar o botão de busca visível e conectá-lo à função de busca da API
+        const searchBtnElement = document.getElementById('search-btn');
+        if (searchBtnElement) {
+            searchBtnElement.style.display = 'inline-block';
+            searchBtnElement.addEventListener('click', async () => {
+                const term = prompt('Digite o termo para buscar drinks (ex: margarita, mojito).');
+                if (!term || term.trim() === '') {
+                    return;
+                }
+                const loadingMessage = document.getElementById('loading-message');
+                const errorMessage = document.getElementById('error-message');
+                if (loadingMessage) loadingMessage.style.display = 'block';
+                if (errorMessage) errorMessage.style.display = 'none';
+
+                try {
+                    if (typeof window.fetchDrinks === 'function') {
+                        const results = await window.fetchDrinks(term);
+                        if (results && results.length > 0) {
+                            results.forEach(d => {
+                                const name = d.strDrink;
+                                if (name && !drinks.includes(name)) {
+                                    drinks.push(name);
+                                    createDrinkListItem(name);
+                                }
+                            });
+                            drawRouletteWheel();
+                        } else {
+                            if (errorMessage) errorMessage.style.display = 'block';
+                        }
+                    } else {
+                        alert('A função de busca não está disponível. Certifique-se de que js/busca.js foi carregado.');
+                    }
+                } catch (err) {
+                    console.error('Erro ao buscar para roleta:', err);
+                    if (errorMessage) errorMessage.style.display = 'block';
+                } finally {
+                    if (loadingMessage) loadingMessage.style.display = 'none';
+                }
+            });
+        }
+    </script>
 
     <script src="js/acess_cores.js"></script>
     <script src="js/acess_fontes.js"></script>
