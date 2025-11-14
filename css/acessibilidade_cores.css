@@ -1,65 +1,160 @@
+/* Acessibilidade - Sistema de Cores (Modo Claro/Escuro) */
+
 :root {
-    --bg-color: #ffffff;
-    --text-color: #222;
-    --modal-bg: #ffffff;
-    --modal-text: #000000;
-    --button-bg: #27ae60;
-    --button-text: #ffffff;
+    /* Cores principais (mantidas para modo escuro) */
+    --primary-color: #FFA500;
+    --secondary-color: #FF8C00;
+    --accent-color: #FF6347;
+    --dark-color: #0f172a;
+    --light-color: #f8fafc;
+    --text-light: #f1f5f9;
+    --text-dark: #0f172a;
+
+    /* Cores de fundo e superfícies */
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --card-bg: rgba(255, 255, 255, 0.05);
+
+    /* Gradientes */
+    --gradient-primary: linear-gradient(135deg, #FFA500 0%, #FF8C00 50%, #FFB347 100%);
+    --gradient-secondary: linear-gradient(135deg, #FF6347 0%, #FF4500 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255, 165, 0, 0.2) 0%, rgba(255, 140, 0, 0.2) 100%);
+
+    /* Sombras */
+    --shadow-light: 0 8px 32px rgba(0, 0, 0, 0.1);
+    --shadow-medium: 0 20px 40px rgba(0, 0, 0, 0.15);
+    --shadow-large: 0 25px 50px rgba(0, 0, 0, 0.2);
+    --shadow-glow: 0 0 30px rgba(255, 165, 0, 0.4);
+    --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+    /* Cores de estado */
+    --success-color: #22c55e;
+    --warning-color: #f59e0b;
+    --error-color: #ef4444;
 }
 
-/* 🌙 Tema Escuro */
-.dark-mode {
-    --bg-color: #1e293b;
-    --text-color: #f0f0f0;
-    --modal-bg: #2c2c2c;
-    --modal-text: #ffffff;
-    --button-bg: #2ecc71;
-    --button-text: #ffffff;
+/* CORREÇÃO: Mudar a estratégia - usar :root[data-theme] */
+:root[data-theme="light"] {
+    /* Cores de fundo claras */
+    --dark-color: #ffffff !important;
+    --light-color: #0f172a !important;
+    --text-light: #0f172a !important;
+    --text-dark: #f8fafc !important;
+
+    /* Cores de superfície e cartões */
+    --glass-bg: rgba(15, 23, 42, 0.05) !important;
+    --glass-border: rgba(15, 23, 42, 0.1) !important;
+    --card-bg: rgba(255, 255, 255, 0.95) !important;
+
+    /* Gradientes ajustados para modo claro */
+    --gradient-primary: linear-gradient(135deg, #FFB347 0%, #FFA500 50%, #FF8C00 100%) !important;
+    --gradient-secondary: linear-gradient(135deg, #FF4500 0%, #FF6347 100%) !important;
+    --gradient-glass: linear-gradient(135deg, rgba(255, 179, 71, 0.15) 0%, rgba(255, 165, 0, 0.15) 100%) !important;
+
+    /* Sombras mais suaves para modo claro */
+    --shadow-light: 0 8px 32px rgba(15, 23, 42, 0.08) !important;
+    --shadow-medium: 0 20px 40px rgba(15, 23, 42, 0.12) !important;
+    --shadow-large: 0 25px 50px rgba(15, 23, 42, 0.15) !important;
+    --shadow-glow: 0 0 30px rgba(255, 165, 0, 0.3) !important;
+    --card-shadow: 0 10px 30px rgba(15, 23, 42, 0.08) !important;
 }
 
-/* Aplicação das variáveis */
-.filter-section {
-    background: linear-gradient(135deg, var(--bg-color) 0%, #1e293b 100%);
-    color: var(--text-color);
-    transition: background 0.4s, color 0.4s;
+/* Transições suaves para mudança de tema */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
 }
 
-main {
-    background: linear-gradient(135deg, var(--bg-color) 0%, #1e293b 100%);
-    color: var(--text-color);
-    transition: background 0.4s, color 0.4s;
+/* Aplicação das cores no layout geral */
+body {
+    background-color: var(--dark-color);
+    color: var(--text-light);
 }
 
-.age-modal {
-    background-color: var(--modal-bg);
-    color: var(--modal-text);
-    transition: background 0.4s, color 0.4s;
+/* Header */
+.main-header {
+    background-color: var(--dark-color);
+    color: var(--text-light);
 }
 
-.age-modal-buttons button {
-    background-color: var(--button-bg);
-    color: var(--button-text);
-    transition: background 0.4s, transform 0.3s, box-shadow 0.3s;
+/* Hero section */
+.hero {
+    background-color: var(--dark-color);
+    color: var(--text-light);
 }
 
-/* Botão do modo */
-.theme-toggle {
-    position: absolute;
-    top: 15px;
-    right: 20px;
+/* Botões de filtro */
+.filter-btn {
+    background-color: var(--card-bg);
+    color: var(--text-light);
+    border: 1px solid var(--glass-border);
 }
 
-.theme-toggle button {
-    background: transparent;
-    color: var(--text-color);
-    border: 1px solid var(--text-color);
-    padding: 6px 12px;
-    border-radius: 8px;
+.filter-btn.active,
+.filter-btn:hover {
+    background: var(--gradient-primary);
+    color: var(--text-dark);
+}
+
+/* Botões do carousel */
+.carousel-button {
+    background-color: var(--card-bg);
+    color: var(--text-light);
+    border: 1px solid var(--glass-border);
+}
+
+.carousel-button:hover {
+    background-color: var(--primary-color);
+    color: var(--text-dark);
+}
+
+/* Modal */
+.modal-content {
+    background-color: var(--card-bg);
+    color: var(--text-light);
+    border: 1px solid var(--glass-border);
+}
+
+.age-modal-content {
+    background-color: var(--card-bg);
+    color: var(--text-light);
+}
+
+/* Links */
+a {
+    color: var(--text-light);
+}
+
+a:hover {
+    color: var(--primary-color);
+}
+
+/* Títulos */
+h1, h2, h3, h4, h5, h6 {
+    color: var(--text-light);
+}
+
+/* Botão de toggle theme */
+#toggle-theme {
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
+    color: var(--text-light);
     cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 8px;
     transition: all 0.3s ease;
 }
 
-.theme-toggle button:hover {
-    background: var(--text-color);
-    color: var(--bg-color);
+#toggle-theme:hover {
+    background: var(--primary-color);
+    color: var(--text-dark);
+    transform: scale(1.05);
+}
+
+/* Indicador visual do tema atual */
+:root[data-theme="dark"] #toggle-theme::before {
+    content: "☀️";
+}
+
+:root[data-theme="light"] #toggle-theme::before {
+    content: "🌙";
 }

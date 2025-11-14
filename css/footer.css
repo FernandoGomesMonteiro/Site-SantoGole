@@ -47,7 +47,7 @@
 .footer-logo p {
     font-size: 1.1rem;
     line-height: 1.8;
-    color: rgba(241, 245, 249, 0.7);
+    color: var(--text-light);
     margin-bottom: 2rem;
 }
 
@@ -86,7 +86,7 @@
 }
 
 .footer-links a {
-    color: rgba(241, 245, 249, 0.7);
+    color: var(--text-light);
     text-decoration: none;
     position: relative;
     padding: 0.5rem 0;
