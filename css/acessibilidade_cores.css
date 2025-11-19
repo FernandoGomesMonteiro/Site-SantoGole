@@ -18,7 +18,7 @@
     /* Gradientes */
     --gradient-primary: linear-gradient(135deg, #FFA500 0%, #FF8C00 50%, #FFB347 100%);
     --gradient-secondary: linear-gradient(135deg, #FF6347 0%, #FF4500 100%);
-    --gradient-glass: linear-gradient(135deg, rgba(255,165,0,0.2) 0%, rgba(255,140,0,0.2) 100%);
+    --gradient-glass: linear-gradient(135deg, rgba(255, 165, 0, 0.2) 0%, rgba(255, 140, 0, 0.2) 100%);
 
     /* Sombras */
     --shadow-light: 0 8px 32px rgba(0, 0, 0, 0.1);
@@ -36,21 +36,29 @@
 /* CORREÇÃO: Mudar a estratégia - usar :root[data-theme] */
 :root[data-theme="light"] {
     /* Fundo e superfícies: creme suave, sofisticado */
-    --dark-color: #f7efe9;        /* base clara substituta do branco puro */
+    --dark-color: #f7efe9;
+    /* base clara substituta do branco puro */
     --light-color: #ffffff;
-    --card-bg: #fff6f3;           /* cartões com leve calor */
-    --glass-bg: rgba(20,20,20,0.03);
-    --glass-border: rgba(20,20,20,0.06);
+    --card-bg: #fff6f3;
+    /* cartões com leve calor */
+    --glass-bg: rgba(20, 20, 20, 0.158);
+    --glass-border: rgba(20, 20, 20, 0.06);
 
     /* Tipografia: texto escuro e legível sobre o fundo claro */
-    --text-light: #1e1412;        /* usado como cor principal do texto em tema claro */
-    --text-dark: #0b0706;         /* títulos / ênfases - quase preto */
+    --text-light: #1e1412;
+    /* usado como cor principal do texto em tema claro */
+    --text-dark: #0b0706;
+    /* títulos / ênfases - quase preto */
 
     /* Paleta de acentos refinada (vinho + dourado suave) */
-    --primary-color: #c9818c;     /* vinho profundo para botões e destaques */
-    --primary-contrast: #FFFFFF;  /* texto sobre primary */
-    --accent-color: #c9a34b;      /* dourado suave para detalhes */
-    --secondary-color: #7a6f6c;   /* neutro quente para UI secundária */
+    --primary-color: #c9818c;
+    /* vinho profundo para botões e destaques */
+    --primary-contrast: #FFFFFF;
+    /* texto sobre primary */
+    --accent-color: #c9a34b;
+    /* dourado suave para detalhes */
+    --secondary-color: #a5a4a4;
+    /* neutro quente para UI secundária */
 
     /* Gradientes elegantes, com contraste controlado */
     --gradient-primary: linear-gradient(135deg, #7a3e3e 0%, #d18a6c 50%, #f3e5d8 100%);
@@ -75,18 +83,24 @@
 /* aplica fundo/cores para o tema claro com melhor legibilidade */
 :root[data-theme="light"] body {
     background: var(--gradient-primary);
-    color: var(--text-light); /* garantir texto escuro legível sobre o gradiente */
+    color: var(--text-light);
+    /* garantir texto escuro legível sobre o gradiente */
 }
+
+:root[data-theme="light"] .filter-group select,
+:root[data-theme="light"] .filter-group input {
+    color: var(--light-color);
+    background: var();
+}
+
 
 /* header e hero usam texto escuro no modo claro */
 :root[data-theme="light"] .main-header,
 :root[data-theme="light"] .hero {
-    color: var(--text-dark);
+    color: var(--light-color);
 }
 
 /* reforçar contraste em títulos/heading no modo claro */
-:root[data-theme="light"] h1,
-:root[data-theme="light"] h2,
 :root[data-theme="light"] h3,
 :root[data-theme="light"] h4,
 :root[data-theme="light"] h5,
@@ -94,18 +108,35 @@
     color: var(--text-dark);
 }
 
+
 /* resultados e parágrafos — texto escuro para legibilidade */
 :root[data-theme="light"] .result-content p {
     color: var(--text-light);
 }
 
+:root[data-theme="light"] .drink-content p {
+    color: var(--light-color);
+}
+
+
 /* links com acento visível sobre o fundo — usar primary ou preto conforme contexto */
 :root[data-theme="light"] a {
-    color: var(--primary-color);
+    color: var(--text-light);
 }
+
 :root[data-theme="light"] a:hover {
     color: var(--accent-color);
 }
+
+
+:root[data-theme="light"] .main-header a {
+    color: var(--light-color);
+}
+
+:root[data-theme="light"] .main-header a:hover {
+    color: var(--primary-color);
+}
+
 
 /* cards/containers — cor de fundo e borda que contrastem com o gradiente */
 :root[data-theme="light"] .result-card,
@@ -122,8 +153,14 @@
     background: linear-gradient(135deg, #fff5ef 0%, #fff0e6 100%);
     color: var(--text-dark);
 }
-:root[data-theme="light"] .footer-links a { color: var(--text-dark); }
-:root[data-theme="light"] .footer-links a:hover { color: var(--secondary-color); }
+
+:root[data-theme="light"] .footer-links a {
+    color: var(--text-dark);
+}
+
+:root[data-theme="light"] .footer-links a:hover {
+    color: var(--secondary-color);
+}
 
 /* Transições suaves para mudança de tema */
 * {
@@ -133,7 +170,6 @@
 /* Aplicação das cores no layout geral */
 body {
     /* fundo mais refinado: usa gradiente primário definido nas variáveis */
-    background: var(--gradient-primary);
     color: var(--text-light);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -141,19 +177,23 @@ body {
 
 /* Header */
 .main-header {
-    background: transparent;                  /* sem bloco opaco */
+    background: transparent;
+    /* sem bloco opaco */
     color: var(--text-light);
-    border: none;                              /* remove bordo feio */
-    box-shadow: var(--shadow-soft);            /* leve elevação para separar do fundo */
+    border: none;
+    /* remove bordo feio */
+    box-shadow: var(--shadow-soft);
+    /* leve elevação para separar do fundo */
     backdrop-filter: blur(6px) saturate(120%);
     -webkit-backdrop-filter: blur(6px) saturate(120%);
 }
 
 /* Hero section */
 .hero {
-    background: transparent;                   /* mantém o gradiente do body sem faixa sólida */
-    color: var(--text-dark);                    /* títulos legíveis no claro */
-    border: none;                               /* remove bordas indesejadas */
+     /* mantém o gradiente do body sem faixa sólida */
+    /* títulos legíveis no claro */
+    border: none;
+    /* remove bordas indesejadas */
     box-shadow: none;
 }
 
@@ -161,7 +201,8 @@ body {
 .filter-btn {
     background-color: var(--card-bg);
     color: var(--text-light);
-    border: none;                               /* sem bordas finas */
+    border: none;
+    /* sem bordas finas */
     box-shadow: var(--shadow-card);
 }
 
@@ -209,7 +250,12 @@ a:hover {
 }
 
 /* Títulos */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
     color: var(--text-light);
 }
 

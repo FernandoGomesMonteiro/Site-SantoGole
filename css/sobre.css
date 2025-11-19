@@ -104,7 +104,10 @@
 }
 
 .mission-text h1 {
-  color: #ffb347;
+  background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 50%, var(--secondary-color) 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
   margin-bottom: 15px;
   font-size: 3rem;
 }
@@ -130,12 +133,11 @@
 .our-values {
   padding: 60px 20px;
   text-align: center;
-  background: linear-gradient(135deg, var(--dark-color) 0%, #0f172a 100%);
 }
 
 .our-values h2 {
   margin-bottom: 40px;
-  color: #ffb347;
+  color: var(--gradient-primary);
   font-size: 3rem;
 }
 
@@ -146,7 +148,7 @@
 }
 
 .value-card {
-  background: rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.15);
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 25px;
   border-radius: 18px;
@@ -163,7 +165,7 @@
 .value-card i {
   font-size: 2rem;
   margin-bottom: 15px;
-  color: #ffb347;
+  color: var(--primary-color);
 }
 
 .value-card h3 {
@@ -173,6 +175,6 @@
 }
 
 .value-card p {
-  color: rgba(241, 245, 249, 0.8);
+  color: rgba(255, 255, 255, 0.8);
 
 }

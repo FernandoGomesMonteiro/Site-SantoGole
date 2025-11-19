@@ -114,7 +114,6 @@ main {
     justify-content: center;
     gap: clamp(24px, 6vw, 60px);
     padding: clamp(24px, 6vw, 50px);
-    background: linear-gradient(135deg, var(--dark-color) 0%, #0f172a 100%);
 }
 
 main p {

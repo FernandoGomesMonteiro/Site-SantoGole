@@ -241,7 +241,7 @@
 }
 
 .pagination-btn {
-    background-color: #ff6f00;
+    background: linear-gradient(135deg, var(--primary-color) 100% );
     color: #fff;
     border: none;
     padding: 0.6rem 1.2rem;
@@ -268,7 +268,7 @@
 
 /* ======== Card de Drink ======== */
 .drink-card {
-    background-color: #ffaf38;
+    background: linear-gradient(135deg,  var(--primary-color) 100% );
     border: 0.5px solid #855000;
     border-radius: 16px;
     overflow: hidden;
