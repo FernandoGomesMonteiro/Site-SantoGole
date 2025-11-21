@@ -104,7 +104,7 @@
 }
 
 .mission-text h1 {
-  background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 50%, var(--secondary-color) 100%);
+  background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 200%);
   background-clip: text;
   -webkit-background-clip: text;
   color: transparent;
@@ -136,8 +136,11 @@
 }
 
 .our-values h2 {
-  margin-bottom: 40px;
-  color: var(--gradient-primary);
+  background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 200%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  margin-bottom: 15px;
   font-size: 3rem;
 }
 
