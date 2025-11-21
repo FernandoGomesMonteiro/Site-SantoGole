@@ -4,22 +4,26 @@
 const hamburgerBtn = document.getElementById('hamburger-btn');
 const mobileNav = document.getElementById('mobile-nav');
 const closeBtn = document.getElementById('close-btn');
-const mobileNavLinks = mobileNav.querySelectorAll('a');
 
 const openNav = () => {
+    if (!mobileNav || !hamburgerBtn) return;
     mobileNav.classList.add('open');
     hamburgerBtn.setAttribute('aria-expanded', 'true');
 };
 const closeNav = () => {
+    if (!mobileNav || !hamburgerBtn) return;
     mobileNav.classList.remove('open');
     hamburgerBtn.setAttribute('aria-expanded', 'false');
 };
 
-hamburgerBtn.addEventListener('click', openNav);
-closeBtn.addEventListener('click', closeNav);
-mobileNavLinks.forEach(link => {
-    link.addEventListener('click', closeNav);
-});
+if (hamburgerBtn) hamburgerBtn.addEventListener('click', openNav);
+if (closeBtn) closeBtn.addEventListener('click', closeNav);
+if (mobileNav) {
+    const mobileNavLinks = mobileNav.querySelectorAll('a');
+    mobileNavLinks.forEach(link => {
+        link.addEventListener('click', closeNav);
+    });
+}
 
 // ==========================================
 // LÓGICA PRINCIPAL DA PÁGINA (CARROSSEL, FILTROS, MODAL)
@@ -42,6 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     let filteredDrinks = [...drinks];
     let scrollTimeout;
+
+    // Se os elementos essenciais do carrossel não existirem, aborta a inicialização do carrossel
+    if (!carouselTrack || !trackContainer || !prevButton || !nextButton || !indicatorsContainer) {
+        console.warn('Carrossel não inicializado: elementos ausentes.', { carouselTrack, trackContainer, prevButton, nextButton, indicatorsContainer });
+        // Ainda assim renderiza os cards sem lógica de carrossel
+        carouselTrack && renderDrinks();
+        return;
+    }
 
     const modal = document.getElementById("age-modal");
     const yesBtn = document.getElementById("age-yes");
@@ -113,9 +125,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     function updateIndicators() {
+        if (!indicatorsContainer) return;
+
         indicatorsContainer.innerHTML = '';
-        const itemsPerPage = Math.floor(trackContainer.clientWidth / (carouselTrack.querySelector('.drink-card')?.offsetWidth || 340));
-        const totalPages = Math.ceil(filteredDrinks.length / itemsPerPage);
+        const cardWidth = carouselTrack.querySelector('.drink-card')?.offsetWidth || 340;
+        const itemsPerPage = Math.floor(trackContainer.clientWidth / cardWidth) || 1;
+        const totalPages = Math.ceil(filteredDrinks.length / itemsPerPage) || 0;
 
         if (totalPages <= 1) return;
 
@@ -129,8 +144,8 @@ document.addEventListener('DOMContentLoaded', () => {
             indicatorsContainer.appendChild(indicator);
         }
 
-        const cardWidth = carouselTrack.querySelector('.drink-card')?.offsetWidth + 20;
-        const currentPage = Math.round(trackContainer.scrollLeft / (itemsPerPage * cardWidth));
+        const cardWidthWithGap = (carouselTrack.querySelector('.drink-card')?.offsetWidth || 320) + 20;
+        const currentPage = Math.min(Math.max(0, Math.round(trackContainer.scrollLeft / (itemsPerPage * cardWidthWithGap))), totalPages - 1);
         const indicators = indicatorsContainer.querySelectorAll('.indicator');
         indicators[currentPage]?.classList.add('active');
     }

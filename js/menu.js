@@ -1,29 +1,47 @@
 // ==========================================
-// EFEITO DO HEADER NA ROLAGEM
+// MENU.JS — VERSÃO CORRIGIDA PARA MOBILE / iPHONE
 // ==========================================
-const mainHeader = document.getElementById('main-header');
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50) {
-        mainHeader.classList.add('scrolled');
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    // ==========================================
+    // EFEITO DO HEADER NA ROLAGEM
+    // ==========================================
+    const mainHeader = document.getElementById("main-header");
+
+    if (mainHeader) {
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) {
+                mainHeader.classList.add("scrolled");
+            } else {
+                mainHeader.classList.remove("scrolled");
+            }
+        });
     } else {
-        mainHeader.classList.remove('scrolled');
+        console.warn("⚠️ main-header não encontrado no DOM.");
+    }
+
+
+    // ==========================================
+    // ANIMAÇÕES DE SCROLL (SCROLL-REVEAL)
+    // ==========================================
+    const animatedElements = document.querySelectorAll(".fade-in");
+
+    if (animatedElements.length > 0) {
+        const observer = new IntersectionObserver(
+            (entries, obs) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add("visible");
+                        obs.unobserve(entry.target);
+                    }
+                });
+            },
+            { threshold: 0.1 }
+        );
+
+        animatedElements.forEach((el) => observer.observe(el));
+    } else {
+        console.warn("⚠️ Nenhum .fade-in encontrado para animar.");
     }
 });
-
-
-// ==========================================
-// ANIMAÇÕES DE SCROLL (SCROLL-REVEAL)
-// ==========================================
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-        }
-    });
-}, {
-    threshold: 0.1
-});
-
-const elementsToAnimate = document.querySelectorAll('.fade-in');
-elementsToAnimate.forEach(el => observer.observe(el));
