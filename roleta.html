@@ -24,7 +24,6 @@
         }
 
         .search-container {
-            display: flex;
             gap: 16px;
             align-items: center;
             flex-wrap: wrap;
@@ -193,47 +192,52 @@
             </div>
         </div>
 
-        <!-- Botão flutuante do Drink Aleatório -->
-        <div id="random-drink-floating" class="random-drink-floating">
-            <button class="floating-btn" id="floating-random-btn" aria-label="Drink aleatório">
-                <i class="fas fa-cocktail"></i>
-                <span class="floating-tooltip">Drink Surpresa</span>
+    </main>
+
+    <!-- Botão flutuante do Drink Aleatório -->
+    <div id="random-drink-floating" class="random-drink-floating">
+        <button class="floating-btn" id="floating-random-btn" aria-label="Drink aleatório">
+            <i class="fas fa-cocktail"></i>
+            <span class="floating-tooltip">Drink Surpresa</span>
+        </button>
+    </div>
+
+    <!-- Modal do Drink Aleatório -->
+    <div id="random-drink-modal" class="random-drink-modal">
+        <div class="modal-overlay" id="random-modal-overlay"></div>
+        <div class="modal-content">
+            <button class="modal-close" id="random-modal-close">
+                <i class="fas fa-times"></i>
             </button>
-        </div>
-        <!-- Modal do Drink Aleatório -->
-        <div id="random-drink-modal" class="random-drink-modal">
-            <div class="modal-overlay" id="random-modal-overlay"></div>
-            <div class="modal-content">
-                <button class="modal-close" id="random-modal-close">
-                    <i class="fas fa-times"></i>
+
+            <div class="modal-header">
+                <h1>Drink Aleatório</h1>
+                <p>Não sabe o que pedir? Deixe a sorte escolher!</p>
+            </div>
+
+            <div class="search-container">
+                <button class="random-btn" id="modal-random-btn">
+                    <i class="fas fa-random"></i> Surpreenda-me
                 </button>
 
-                <div class="modal-header">
-                    <h1>Drink Aleatório</h1>
-                    <p>Não sabe o que pedir? Deixe a sorte escolher!</p>
+                <!-- Mensagens -->
+                <div lass="message" id="loading-message">
+                    <i class="fas fa-cocktail"></i>
+                    <p>Buscando drinks...</p>
                 </div>
 
-                <div class="search-container">
-                    <button class="random-btn" id="modal-random-btn">
-                        <i class="fas fa-random"></i> Surpreenda-me
-                    </button>
+                <div class="message" id="error-message">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>Nenhum drink encontrado. Tente novamente.</p>
+                </div>
 
-
-
-                    <div class="message" id="error-message">
-                        <i class="fas fa-exclamation-circle"></i>
-                        <p>Nenhum drink encontrado. Tente novamente.</p>
-                    </div>
-
-                    <!-- Resultados da Busca -->
-                    <div class="results-grid" id="results-grid">
-                        <!-- Os resultados serão inseridos aqui via JavaScript -->
-                    </div>
+                <!-- Resultados da Busca -->
+                <div class="results-grid" id="results-grid">
+                    <!-- Os resultados serão inseridos aqui via JavaScript -->
                 </div>
             </div>
         </div>
-    </main>
-
+    </div>
     <!-- Pop-up overlay -->
     <div id="overlay-result">
         <p id="overlay-text"></p>
