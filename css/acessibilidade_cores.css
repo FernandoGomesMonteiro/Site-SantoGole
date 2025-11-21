@@ -12,11 +12,11 @@
 
     /* Cores de fundo e superfícies */
     --glass-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.507);
+    --glass-border: rgba(255, 255, 255, 0.2);
     --card-bg: rgba(255, 255, 255, 0.05);
 
     /* Gradientes */
-    --gradient-primary: linear-gradient(135deg, #FFA500 0%, #FF8C00 50%, #FFB347 100%);
+    --gradient-primary: linear-gradient(135deg, #FFA500 0%, #FF8C00 50%, #FFB347 200%);
     --gradient-secondary: linear-gradient(135deg, #FF6347 0%, #FF4500 100%);
     --gradient-glass: linear-gradient(135deg, rgba(255, 165, 0, 0.2) 0%, rgba(255, 140, 0, 0.2) 100%);
 
@@ -26,6 +26,9 @@
     --shadow-large: 0 25px 50px rgba(0, 0, 0, 0.2);
     --shadow-glow: 0 0 30px rgba(255, 165, 0, 0.4);
     --card-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    /* aliases usados em vários arquivos (mantém compatibilidade) */
+    --shadow-soft: var(--shadow-light);
+    --shadow-card: var(--card-shadow);
 
     /* Cores de estado */
     --success-color: #22c55e;
@@ -35,49 +38,39 @@
 
 /* CORREÇÃO: Mudar a estratégia - usar :root[data-theme] */
 :root[data-theme="light"] {
-    /* Fundo e superfícies: creme suave, sofisticado */
+    /* Fundo e superfícies: creme quente (mel/âmbar) para remeter a bebidas */
     --dark-color: #f7efe9;
-    /* base clara substituta do branco puro */
     --light-color: #ffffff;
-    --card-bg: #fff6f3;
-    /* cartões com leve calor */
-    --glass-bg: rgba(20, 20, 20, 0.158);
-    --glass-border: rgba(20, 20, 20, 0.06);
+    --card-bg: #fff8f2; /* leve creme para cartões */
+    --glass-bg: rgba(255, 255, 255, 0.85);
+    --glass-border: rgba(16, 12, 8, 0.06);
 
-    /* Tipografia: texto escuro e legível sobre o fundo claro */
-    --text-light: #1e1412;
-    /* usado como cor principal do texto em tema claro */
-    --text-dark: #0b0706;
-    /* títulos / ênfases - quase preto */
+    /* Tipografia: texto escuro para máxima legibilidade */
+    --text-light: #1f2937; /* texto principal */
+    --text-dark: #0b1220; /* títulos / ênfases */
 
-    /* Paleta de acentos refinada (vinho + dourado suave) */
-    --primary-color: #c9818c;
-    /* vinho profundo para botões e destaques */
+    /* Paleta inspirada em bebidas: âmbar (whiskey), dourado e vinho */
+    --primary-color: #c76b1e; /* âmbar / caramelo */
     --primary-contrast: #FFFFFF;
-    /* texto sobre primary */
-    --accent-color: #c9a34b;
-    /* dourado suave para detalhes */
-    --secondary-color: #ffffffd5;
-    /* neutro quente para UI secundária */
+    --accent-color: #7b2e2e; /* vinho profundo */
+    --secondary-color: #d9b55a; /* dourado suave */
+    --on-primary: var(--primary-contrast);
+    --on-accent: #FFFFFF;
 
-    /* Gradientes elegantes, com contraste controlado */
-    --gradient-primary: linear-gradient(135deg, #7a3e3e 0%, #d18a6c 50%, #f3e5d8 200%);
-    --gradient-secondary: linear-gradient(135deg, #7a3e3e 0%, #d18a6c 50%, #f3e5d8 100%);
+    /* Gradientes quentes que mantêm leitura */
+    --gradient-primary: linear-gradient(135deg, #c76b1e 0%, #d9b55a 60%, #fff6eb 200%);
+    --gradient-secondary: linear-gradient(135deg, #7b2e2e 0%, #c76b1e 60%, #fff6eb 100%);
 
-    /* Sombras discretas e sofisticadas */
-    --shadow-light: 0 6px 18px rgba(15, 12, 10, 0.06);
-    --shadow-medium: 0 12px 28px rgba(15, 12, 10, 0.08);
-    --shadow-large: 0 18px 40px rgba(15, 12, 10, 0.10);
-    --card-shadow: 0 10px 26px rgba(15, 12, 10, 0.06);
+    /* Sombras mais suaves no tema claro */
+    --shadow-light: 0 6px 18px rgba(11, 9, 6, 0.06);
+    --shadow-medium: 0 12px 28px rgba(11, 9, 6, 0.08);
+    --shadow-large: 0 18px 40px rgba(11, 9, 6, 0.10);
+    --card-shadow: 0 10px 26px rgba(11, 9, 6, 0.06);
 
     /* Estados */
     --success-color: #15753b;
     --warning-color: #b45309;
     --error-color: #b91c1c;
-
-    /* helpers */
-    --on-primary: var(--primary-contrast);
-    --on-accent: #000000;
 }
 
 /* aplica fundo/cores para o tema claro com melhor legibilidade */
@@ -89,15 +82,16 @@
 
 :root[data-theme="light"] .filter-group select,
 :root[data-theme="light"] .filter-group input {
-    color: var(--light-color);
-    background: var();
+    color: var(--text-dark);
+    background: var(--card-bg);
+    border: 1px solid var(--glass-border);
 }
 
 
 /* header e hero usam texto escuro no modo claro */
 :root[data-theme="light"] .main-header,
 :root[data-theme="light"] .hero {
-    color: var(--light-color);
+    color: var(--text-dark);
 }
 
 /* reforçar contraste em títulos/heading no modo claro */
@@ -115,27 +109,11 @@
 }
 
 :root[data-theme="light"] .drink-content p {
-    color: var(--light-color);
-}
-
-
-/* links com acento visível sobre o fundo — usar primary ou preto conforme contexto */
-:root[data-theme="light"] a {
     color: var(--text-light);
 }
 
-:root[data-theme="light"] a:hover {
-    color: var(--accent-color);
-}
 
 
-:root[data-theme="light"] .main-header a {
-    color: var(--light-color);
-}
-
-:root[data-theme="light"] .main-header a:hover {
-    color: var(--primary-color);
-}
 
 
 /* cards/containers — cor de fundo e borda que contrastem com o gradiente */
@@ -162,7 +140,10 @@
     color: var(--secondary-color);
 }
 
-
+/* Transições suaves para mudança de tema */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
+}
 
 /* Aplicação das cores no layout geral */
 body {

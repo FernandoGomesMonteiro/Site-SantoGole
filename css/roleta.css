@@ -52,6 +52,7 @@
 }
 
 .hero p {
+    color: var(--light-color);
     font-size: clamp(1.1rem, 2.5vw, 1.5rem);
     margin-bottom: 2.5rem;
     max-width: 600px;
@@ -322,6 +323,7 @@ main p {
     border-left: 4px solid #ff6f00;
     transition: all 0.3s ease;
     backdrop-filter: blur(10px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
 #drink-list li:hover {
@@ -336,7 +338,7 @@ main p {
     padding: 8px;
     border-radius: 6px;
     transition: all 0.3s ease;
-    color: white;
+    color: var(--text-light);
     background: transparent;
     border: 1px solid transparent;
     font-size: 18px;

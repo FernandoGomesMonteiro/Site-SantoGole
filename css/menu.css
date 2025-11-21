@@ -66,7 +66,7 @@ body {
 .logo {
     font-size: 1.8rem;
     font-weight: 900;
-    color: var(--text-light);
+    color: var(--light-color);
     text-decoration: none;
 }
 
@@ -86,7 +86,7 @@ body {
 }
 
 .desktop-nav a {
-    color: var(--text-light);
+    color: var(--light-color);
     text-decoration: none;
     font-size: 18px;
     position: relative;
