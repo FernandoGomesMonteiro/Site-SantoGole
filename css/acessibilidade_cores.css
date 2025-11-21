@@ -12,7 +12,7 @@
 
     /* Cores de fundo e superfícies */
     --glass-bg: rgba(255, 255, 255, 0.1);
-    --glass-border: rgba(255, 255, 255, 0.2);
+    --glass-border: rgba(255, 255, 255, 0.507);
     --card-bg: rgba(255, 255, 255, 0.05);
 
     /* Gradientes */
@@ -61,7 +61,7 @@
     /* neutro quente para UI secundária */
 
     /* Gradientes elegantes, com contraste controlado */
-    --gradient-primary: linear-gradient(135deg, #7a3e3e 0%, #d18a6c 50%, #f3e5d8 100%);
+    --gradient-primary: linear-gradient(135deg, #7a3e3e 0%, #d18a6c 50%, #f3e5d8 200%);
     --gradient-secondary: linear-gradient(135deg, #7a3e3e 0%, #d18a6c 50%, #f3e5d8 100%);
 
     /* Sombras discretas e sofisticadas */
@@ -162,10 +162,7 @@
     color: var(--secondary-color);
 }
 
-/* Transições suaves para mudança de tema */
-* {
-    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease !important;
-}
+
 
 /* Aplicação das cores no layout geral */
 body {

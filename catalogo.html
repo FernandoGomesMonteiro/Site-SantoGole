@@ -26,6 +26,7 @@
     <link rel="stylesheet" href="css/menu.css">
     <link rel="stylesheet" href="css/footer.css">
     <link rel="stylesheet" href="css/catalogo.css">
+    <link rel="stylesheet" href="css/drinkAleatorio.css">
 </head>
 
 <body>
@@ -111,8 +112,50 @@
                 <button class="pagination-btn" id="next-page" aria-label="Próxima página" disabled>Próxima</button>
             </nav>
         </div>
+
+        <!-- Botão flutuante do Drink Aleatório -->
+        <div id="random-drink-floating" class="random-drink-floating">
+            <button class="floating-btn" id="floating-random-btn" aria-label="Drink aleatório">
+                <i class="fas fa-cocktail"></i>
+                <span class="floating-tooltip">Drink Surpresa</span>
+            </button>
+        </div>
+        <!-- Modal do Drink Aleatório -->
+        <div id="random-drink-modal" class="random-drink-modal">
+            <div class="modal-overlay" id="random-modal-overlay"></div>
+            <div class="modal-content">
+                <button class="modal-close" id="random-modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+
+                <div class="modal-header">
+                    <h1>Drink Aleatório</h1>
+                    <p>Não sabe o que pedir? Deixe a sorte escolher!</p>
+                </div>
+
+                <div class="search-container">
+                    <button class="random-btn" id="modal-random-btn">
+                        <i class="fas fa-random"></i> Surpreenda-me
+                    </button>
+
+
+
+                    <div class="message" id="error-message">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <p>Nenhum drink encontrado. Tente novamente.</p>
+                    </div>
+
+                    <!-- Resultados da Busca -->
+                    <div class="results-grid" id="results-grid">
+                        <!-- Os resultados serão inseridos aqui via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
+
+    <script src="js/drinkAleatorio.js"></script>
     <script src="js/acess_cores.js"></script>
     <script src="js/acess_fontes.js"></script>
     <script src="js/catalogo.js"></script>

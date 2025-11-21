@@ -1,5 +1,10 @@
 /* ===== SEÇÃO HERO ===== */
-*, *::before, *::after { box-sizing: border-box; }
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
 .hero {
     background:
         linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0)),
@@ -118,95 +123,11 @@ main {
 
 main p {
     font-size: clamp(1rem, 2.5vw, 1.3rem);
-    color: rgba(255, 255, 255, 0.8);
+    color: var(--text-light);
     margin-bottom: 2rem;
     line-height: 1.6;
 }
 
-/* ===== SEÇÃO DRINK ALEATÓRIO ===== */
-.drinkAleatorio {
-    width: 90%;
-    max-width: 800px;
-    text-align: center;
-    font-size: clamp(1rem, 2.5vw, 1.25rem);
-    background: linear-gradient(135deg, rgba(30, 30, 40, 0.9) 0%, rgba(20, 20, 30, 0.95) 100%);
-    border: 1px solid rgba(255, 111, 0, 0.3);
-    border-radius: 20px;
-    padding: 2rem;
-    backdrop-filter: blur(10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
-}
-
-.drinkAleatorio h1 {
-    color: #ffae00;
-    margin-bottom: 1rem;
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
-    background: linear-gradient(135deg, #ffae00 0%, #ff6f00 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-shadow: 0 2px 10px rgba(255, 174, 0, 0.3);
-}
-
-.search-container {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    justify-content: center; /* centraliza o botão Surpreenda-me corretamente */
-    flex-wrap: wrap;
-    border-radius: 15px;
-    padding: 10px;
-    box-sizing: border-box;
-}
-
-/* ===== BOTÃO SURPREENDER-ME (com arco-íris animado) ===== */
-.random-btn {
-    width: 250px;
-    height: 70px;
-    border: none;
-    outline: none;
-    color: #fff;
-    cursor: pointer;
-    position: relative;
-    z-index: 0;
-    border-radius: 10px;
-    font-size: 20px;
-    font-weight: 700;
-    transition: transform .16s cubic-bezier(.2,.8,.25,1), box-shadow .16s ease, opacity .12s ease;
-    will-change: transform;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 18px;
-    /* arco-íris animado */
-    background: linear-gradient(90deg, #ff6f00, #ff2d95, #7b3cff, #1fb6ff, #00d48d, #ffd400, #ff6f00);
-    background-size: 400% 100%;
-    animation: rainbow 6s linear infinite;
-    box-shadow: 0 8px 26px rgba(255,111,0,0.12);
-}
-
-.random-btn:hover {
-    transform: translateY(-6px) scale(1.02);
-    box-shadow: 0 16px 40px rgba(0,0,0,0.5);
-    opacity: 1;
-}
-
-.random-btn:active {
-    transform: translateY(-2px) scale(.995);
-    transition-duration: .08s;
-}
-
-.random-btn:focus {
-    outline: 3px solid rgba(255,111,0,0.12);
-    outline-offset: 4px;
-    box-shadow: 0 10px 28px rgba(0,0,0,0.35);
-}
-
-@keyframes rainbow {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
 
 /* ===== SEÇÃO MONTE SUA ROLETA DE DRINKS ===== */
 .roulette-wrapper {
@@ -214,7 +135,7 @@ main p {
     max-width: 800px;
     text-align: center;
     font-size: clamp(1rem, 2.5vw, 1.25rem);
-    background: linear-gradient(135deg, rgba(30, 30, 40, 0.9) 0%, rgba(20, 20, 30, 0.95) 100%);
+    background: linear-gradient(135deg, var(--dark-color) 0%);
     border: 1px solid rgba(255, 111, 0, 0.3);
     border-radius: 20px;
     padding: 2rem;
@@ -253,10 +174,9 @@ main p {
 }
 
 .roulette-wrapper h1 {
-    color: #ffae00;
     margin-bottom: 1rem;
     font-size: clamp(1.8rem, 4vw, 2.5rem);
-    background: linear-gradient(135deg, #ffae00 0%, #ff6f00 100%);
+    background: linear-gradient(135deg, #ffffff 0%, var(--primary-color) 0%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -280,7 +200,7 @@ main p {
     border-radius: 16px;
     border: 1px solid rgba(255, 111, 0, 0.2);
     padding: 1.5rem;
-    background: linear-gradient(135deg, rgba(40, 40, 50, 0.9) 0%, rgba(30, 30, 40, 0.95) 100%);
+    background: var(--glass-bg);
     backdrop-filter: blur(10px);
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2),
         inset 0 1px 0 rgba(255, 255, 255, 0.05);
@@ -291,33 +211,38 @@ main p {
     gap: 10px;
     margin-bottom: 1.5rem;
     align-items: center;
-    flex-wrap: wrap; /* permite que o botão quebre em telas pequenas sem estourar o layout */
+    flex-wrap: wrap;
+    /* permite que o botão quebre em telas pequenas sem estourar o layout */
 }
 
 /* garante que o input possa encolher corretamente dentro do flex */
 #drink-input {
     flex: 1 1 auto;
-    min-width: 0; /* crítico para evitar overflow em flex containers */
+    min-width: 0;
+    /* crítico para evitar overflow em flex containers */
     padding: 12px 16px;
     border: 1px solid rgba(255, 111, 0, 0.3);
     border-radius: 10px;
     font-size: 16px;
-    background: rgba(20, 20, 30, 0.8);
-    color: white;
+    background: var(--dark-color);
+    color: var(--text-light);
     transition: all 0.3s ease;
     box-sizing: border-box;
 }
+
+
 
 /* botão de adicionar com tamanho fixo mínimo e alinhamento estável */
 #add-drink-btn {
     flex: 0 0 auto;
     white-space: nowrap;
     min-width: 110px;
-    height: 48px; /* combina com altura visual do input */
+    height: 48px;
+    /* combina com altura visual do input */
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(135deg, #ff6f00, #ffae00);
+    background: var(--gradient-primary);
     color: white;
     border: none;
     border-radius: 10px;
@@ -329,8 +254,14 @@ main p {
 }
 
 /* feedbacks */
-#add-drink-btn:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 111, 0, 0.4); }
-#add-drink-btn:active { transform: translateY(0); }
+#add-drink-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 111, 0, 0.4);
+}
+
+#add-drink-btn:active {
+    transform: translateY(0);
+}
 
 /* versão mobile: empilha input + botões e ajusta tamanhos para evitar quebra */
 @media (max-width: 480px) {
@@ -350,7 +281,7 @@ main p {
     }
 
     /* se houver botão de busca ao lado do input, deixá-lo compacto e alinhado */
-    .suggestions-wrapper > #search-btn {
+    .suggestions-wrapper>#search-btn {
         flex: 0 0 auto;
         height: 48px;
     }
@@ -418,7 +349,7 @@ main p {
 .drink-text:focus {
     outline: none;
     background: rgba(255, 255, 255, 0.15);
-    border: 1px solid #ff6f00;
+    border: 1px solid var(--gradient-primary);
     box-shadow: 0 0 0 2px rgba(255, 111, 0, 0.2);
 }
 
@@ -453,17 +384,13 @@ main p {
 }
 
 #roulette {
+    border: 0.5px solid var(--text-light);
     border-radius: 50%;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3),
-        0 0 0 2px rgba(255, 111, 0, 0.1),
-        inset 0 0 20px rgba(0, 0, 0, 0.2);
-    background: linear-gradient(135deg, #1a1a2a 0%, #2a2a3a 100%);
-    transition: transform 0.3s ease;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.05);
 }
 
-#roulette:hover {
-    transform: scale(1.02);
-}
+
 
 #spin-btn {
     margin-top: 1.5rem;
@@ -471,11 +398,10 @@ main p {
     font-size: 1.1rem;
     border-radius: 50px;
     border: none;
-    background: linear-gradient(135deg, #ff6f00, #ffae00);
+    background: var(--gradient-primary);
     color: #fff;
     cursor: pointer;
     font-weight: 700;
-    box-shadow: 0 6px 20px rgba(255, 111, 0, 0.4);
     transition: all 0.3s ease;
     position: relative;
     overflow: hidden;
@@ -502,8 +428,6 @@ main p {
 
 #spin-btn:hover {
     transform: translateY(-3px) scale(1.05);
-    box-shadow: 0 10px 25px rgba(255, 111, 0, 0.6);
-    background: linear-gradient(135deg, #ff8000, #ffb700);
 }
 
 #spin-btn:active {
@@ -801,9 +725,15 @@ main p {
 }
 
 @media (max-width: 480px) {
-    .random-btn { width: 100%; height: 56px; }
+    .random-btn {
+        width: 100%;
+        height: 56px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-    * { animation: none !important; transition: none !important; }
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
 }

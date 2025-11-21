@@ -14,64 +14,129 @@
     <link rel="stylesheet" href="css/roleta.css">
     <link rel="stylesheet" href="css/acessibilidade_fontes.css">
     <link rel="stylesheet" href="css/acessibilidade_cores.css">
+    <link rel="stylesheet" href="css/drinkAleatorio.css">
 
     <!-- Adicionei estilos mínimos para a lista de sugestões -->
     <style>
         /* --- Minimal, dark-mode aware styles to complement css/roleta.css and acessibilidade_cores.css --- */
-        :root { color-scheme: dark; }
-        .search-container { display:flex; gap:16px; align-items:center; flex-wrap:wrap; margin-bottom:18px; }
-        .search-container .random-btn { min-width:220px; }
+        :root {
+            color-scheme: dark;
+        }
 
-        .suggestions-wrapper { position:relative; display:flex; gap:8px; align-items:center; width:100%; max-width:420px; }
+        .search-container {
+            display: flex;
+            gap: 16px;
+            align-items: center;
+            flex-wrap: wrap;
+            margin-bottom: 18px;
+        }
+
+        .search-container .random-btn {
+            min-width: 220px;
+        }
+
+        .suggestions-wrapper {
+            position: relative;
+            display: flex;
+            gap: 8px;
+            align-items: center;
+            width: 100%;
+            max-width: 420px;
+        }
+
         #drink-input {
-            flex:1;
-            padding:10px 12px;
-            border-radius:10px;
-            border:1px solid rgba(255,111,0,0.12);
+            flex: 1;
+            padding: 10px 12px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 111, 0, 0.12);
             background: var(--card-bg);
             color: var(--text-light);
-            font-size:14px;
+            font-size: 14px;
         }
-        #drink-input:focus { box-shadow:0 0 0 4px rgba(255,111,0,0.08); border-color: #ff6f00; outline: none; }
+
+        #drink-input:focus {
+            box-shadow: 0 0 0 4px rgba(255, 111, 0, 0.08);
+            border-color: #ff6f00;
+            outline: none;
+        }
 
         .suggestions-wrapper #search-btn {
             background: transparent;
-            border: 1px solid rgba(255,111,0,0.12);
+            border: 1px solid rgba(255, 111, 0, 0.12);
             color: var(--text-light);
-            padding:8px 10px;
-            border-radius:8px;
-            cursor:pointer;
-            display:inline-flex;
-            align-items:center;
-            justify-content:center;
+            padding: 8px 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
         }
-        .suggestions-wrapper #search-btn:hover { background: rgba(255,111,0,0.06); }
+
+        .suggestions-wrapper #search-btn:hover {
+            background: rgba(255, 111, 0, 0.06);
+        }
 
         /* Suggestions list styled for dark theme */
         #suggestions {
-            position:absolute;
-            top:48px;
-            left:0;
-            right:0;
+            position: absolute;
+            top: 48px;
+            left: 0;
+            right: 0;
             background: var(--card-bg);
-            border: 1px solid rgba(255,111,0,0.08);
-            border-radius:8px;
-            max-height:260px;
-            overflow:auto;
-            z-index:60;
-            padding:6px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.6);
+            border: 1px solid rgba(255, 111, 0, 0.08);
+            border-radius: 8px;
+            max-height: 260px;
+            overflow: auto;
+            z-index: 60;
+            padding: 6px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
         }
-        #suggestions.hidden { display:none; }
-        #suggestions li { display:flex; gap:10px; align-items:center; padding:8px; border-radius:6px; color:var(--text-light); cursor:pointer; }
-        #suggestions li:hover { background: rgba(255,255,255,0.02); }
-        #suggestions img { width:44px; height:44px; object-fit:cover; border-radius:6px; }
-        #suggestions .name { font-size:14px; color:var(--text-light); }
+
+        #suggestions.hidden {
+            display: none;
+        }
+
+        #suggestions li {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+            padding: 8px;
+            border-radius: 6px;
+            color: var(--text-light);
+            cursor: pointer;
+        }
+
+        #suggestions li:hover {
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        #suggestions img {
+            width: 44px;
+            height: 44px;
+            object-fit: cover;
+            border-radius: 6px;
+        }
+
+        #suggestions .name {
+            font-size: 14px;
+            color: var(--text-light);
+        }
 
         /* Keep overlay and messages consistent with global theme */
-        .message { color: var(--text-light); }
-        .results-grid { gap:12px; margin-top:12px; }
-        @media (max-width:900px) { .suggestions-wrapper { max-width:100%; } }
+        .message {
+            color: var(--text-light);
+        }
+
+        .results-grid {
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        @media (max-width:900px) {
+            .suggestions-wrapper {
+                max-width: 100%;
+            }
+        }
     </style>
 </head>
 
@@ -109,13 +174,14 @@
                     <div class="add-drink">
                         <!-- input + adicionar juntos; search-btn removido -->
                         <div class="suggestions-wrapper">
-                            <input type="text" id="drink-input" placeholder="Digite o nome do drink" autocomplete="off" aria-label="Nome do drink">
+                            <input type="text" id="drink-input" placeholder="Digite o nome do drink" autocomplete="off"
+                                aria-label="Nome do drink">
                             <button id="add-drink-btn">Adicionar</button>
                             <ul id="suggestions" class="hidden" role="listbox" aria-label="Sugestões de drinks"></ul>
                         </div>
-                     </div>
-                     <ul id="drink-list"></ul>
-                 </div>
+                    </div>
+                    <ul id="drink-list"></ul>
+                </div>
 
                 <!-- Canvas da roleta -->
                 <div class="canvas-wrapper">
@@ -130,6 +196,45 @@
             </div>
         </div>
 
+        <!-- Botão flutuante do Drink Aleatório -->
+        <div id="random-drink-floating" class="random-drink-floating">
+            <button class="floating-btn" id="floating-random-btn" aria-label="Drink aleatório">
+                <i class="fas fa-cocktail"></i>
+                <span class="floating-tooltip">Drink Surpresa</span>
+            </button>
+        </div>
+        <!-- Modal do Drink Aleatório -->
+        <div id="random-drink-modal" class="random-drink-modal">
+            <div class="modal-overlay" id="random-modal-overlay"></div>
+            <div class="modal-content">
+                <button class="modal-close" id="random-modal-close">
+                    <i class="fas fa-times"></i>
+                </button>
+
+                <div class="modal-header">
+                    <h1>Drink Aleatório</h1>
+                    <p>Não sabe o que pedir? Deixe a sorte escolher!</p>
+                </div>
+
+                <div class="search-container">
+                    <button class="random-btn" id="modal-random-btn">
+                        <i class="fas fa-random"></i> Surpreenda-me
+                    </button>
+
+
+
+                    <div class="message" id="error-message">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <p>Nenhum drink encontrado. Tente novamente.</p>
+                    </div>
+
+                    <!-- Resultados da Busca -->
+                    <div class="results-grid" id="results-grid">
+                        <!-- Os resultados serão inseridos aqui via JavaScript -->
+                    </div>
+                </div>
+            </div>
+        </div>
     </main>
 
     <!-- Pop-up overlay -->
@@ -485,6 +590,7 @@
         }
     </script>
 
+    <script src="js/drinkAleatorio.js"></script>
     <script src="js/acess_cores.js"></script>
     <script src="js/acess_fontes.js"></script>
     <script src="js/menu.js"></script>
